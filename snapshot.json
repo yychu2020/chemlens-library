@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-19T11:00:19.995Z",
-  "sourceCommit": "28484de83824cbf96e305626e8b936d8bed101a1",
+  "updatedAt": "2026-11-19T13:09:19.366Z",
+  "sourceCommit": "8404931cda8efb2923ed3f77074f4c133c84e243",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 13,
-    "figures": 78,
-    "methods": 96,
-    "pdfs": 14
+    "papers": 14,
+    "figures": 82,
+    "methods": 104,
+    "pdfs": 15
   },
   "files": [
     {
@@ -18,18 +18,18 @@
     },
     {
       "path": "README.md",
-      "size": 1241,
-      "sha256": "46879a93b7961302e202a58202a121eec3f8b6ec857219a7584c5b4137fc79e5"
+      "size": 1242,
+      "sha256": "6611671a3a82bd2dbe4490703c3229e3178afb721789ad057a39ace3e66f6a7d"
     },
     {
       "path": "about.html",
-      "size": 2684,
-      "sha256": "7fdf8f14b9dd7959c067ee4cc2b5091afcd3175e3022a63f96815c850e541a38"
+      "size": 2685,
+      "sha256": "6aca7253e13960ec697a0f76fe33f11d0b8947c6101496f6a0d19133575b31f2"
     },
     {
       "path": "app.js",
-      "size": 138407,
-      "sha256": "e042fe1e6555139991bbbbb99f40c7a993a0ce219a7df50aa81b9ba2aea625f0"
+      "size": 144050,
+      "sha256": "b277d134d26f102c2b94705b49256f8f2bc40b47a57b732d59f806322e6acf2c"
     },
     {
       "path": "assets/favicon.svg",
@@ -437,6 +437,31 @@
       "sha256": "fa07621203a566237ee37bb57823b4fc18fc058a108de1c5de11f09314c8879d"
     },
     {
+      "path": "assets/papers/robot-chemist/figure-1.webp",
+      "size": 149198,
+      "sha256": "4074d98b845cd4b96c5181dee86135af9e582e58c0df58b044ea9f6ba50c7737"
+    },
+    {
+      "path": "assets/papers/robot-chemist/figure-2.webp",
+      "size": 180964,
+      "sha256": "2debcb9eb0624d63168dd866faeaf86dd5c9d1885a2688a4222197329886a884"
+    },
+    {
+      "path": "assets/papers/robot-chemist/figure-3.webp",
+      "size": 126956,
+      "sha256": "dbd883a407b6a594ef4bc58610a667dcb407f69f4829b236e3d0279b88a53f25"
+    },
+    {
+      "path": "assets/papers/robot-chemist/figure-4.webp",
+      "size": 214440,
+      "sha256": "b0090012e73b6dbd061d9f8146a9a78ca1b79f5dd37b2c61978637dd351a13ef"
+    },
+    {
+      "path": "assets/papers/robot-chemist/paper.pdf",
+      "size": 6572450,
+      "sha256": "097848b9e3f2182704845807de4be78b86423cac65e626da41d464c6e1cc2e01"
+    },
+    {
       "path": "assets/papers/toluene-dehydrogenation/figure-1.webp",
       "size": 599122,
       "sha256": "0cef3774fb019d758a47502e4b32c317f7e4baf007e391883959809d12db8a03"
@@ -498,13 +523,13 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 506,
-      "sha256": "63fc0401e6000e2118aca217f19de3e3f3a4b0350a0b0ebdd02fbda7222b82e1"
+      "size": 538,
+      "sha256": "7f06caf18192ad196f6b82e82e65be7887314438b3fab348ed658d39f6e9f161"
     },
     {
       "path": "data.js",
-      "size": 382796,
-      "sha256": "2b6c81fb31633f000b1a1d903b7903e656804b02367c06cf162ffae072316ce8"
+      "size": 401570,
+      "sha256": "e99d4224f8a18ef4497a686269593d3b294c307d57a0edc22c69007398ab5387"
     },
     {
       "path": "display-labels.js",
@@ -553,8 +578,8 @@
     },
     {
       "path": "pdf-preflight.js",
-      "size": 5225,
-      "sha256": "9fbabf20624c613d5b9754cb5b941d182cc1b7eb2c2fc63ff9c6cfff4989eb70"
+      "size": 5970,
+      "sha256": "ef68089daecf977266140e210dffe0c774d58e49e8b91daf0553c36e0bc9981c"
     },
     {
       "path": "reader.css",
@@ -563,8 +588,8 @@
     },
     {
       "path": "styles.css",
-      "size": 76691,
-      "sha256": "a971cf034b2259a4559f7d5ca6614423c1cbd329d1fc9788bb16ab148a4fde45"
+      "size": 77617,
+      "sha256": "389c62f6049c9a08ceddbd9450e7b4d9ddf8dbc9803a0176769f9003a182f0cf"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
