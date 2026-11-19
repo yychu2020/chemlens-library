@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-19T13:09:19.366Z",
-  "sourceCommit": "8404931cda8efb2923ed3f77074f4c133c84e243",
+  "updatedAt": "2026-11-19T13:46:36.764Z",
+  "sourceCommit": "253227c307771e45faef59ace17f17eb476cc807",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 14,
-    "figures": 82,
-    "methods": 104,
-    "pdfs": 15
+    "papers": 15,
+    "figures": 88,
+    "methods": 113,
+    "pdfs": 16
   },
   "files": [
     {
@@ -19,12 +19,12 @@
     {
       "path": "README.md",
       "size": 1242,
-      "sha256": "6611671a3a82bd2dbe4490703c3229e3178afb721789ad057a39ace3e66f6a7d"
+      "sha256": "bd82f69c6ad99f522a25a0deb65cb2cde80cac5571ccc7ea0c806e7c1b81abeb"
     },
     {
       "path": "about.html",
       "size": 2685,
-      "sha256": "6aca7253e13960ec697a0f76fe33f11d0b8947c6101496f6a0d19133575b31f2"
+      "sha256": "b081362a79f074df63c789b14dfaf496ecf3cb178819b3ee58f1f0130e053e07"
     },
     {
       "path": "app.js",
@@ -75,6 +75,41 @@
       "path": "assets/papers/alkali-propylene/paper.pdf",
       "size": 11364839,
       "sha256": "662e07c8b52b878238aa5c72285f316b2f9b4491c2d4c97c5cdd21df6edf1cea"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-1.webp",
+      "size": 123922,
+      "sha256": "89e08ff3f5a96faa032c39894e00d9fbc053a892ef90cc8d34e5e49f71bfe931"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-2.webp",
+      "size": 140080,
+      "sha256": "f2a421bbd4727d1de330c3360cb1f6bffd8b5c91919d7f3f613f094cd8a3261e"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-3.webp",
+      "size": 119368,
+      "sha256": "3a7bc4635c76f4b315cd80049b9739dd2d3b2879e58027ef47a4dad9387e8114"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-4.webp",
+      "size": 69582,
+      "sha256": "66767c21a5b1f15c9387340f4b011b35200a78e3000bc88c86f3a4a677221945"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-5.webp",
+      "size": 265764,
+      "sha256": "42f1607da3b5acdd36da2944f61365b5faf75da013c1ab5915e7d2fddd90e0ec"
+    },
+    {
+      "path": "assets/papers/catda-literature/figure-6.webp",
+      "size": 105744,
+      "sha256": "287413b6d6e03176669f67c778e1983016a1b9393a9ed2a438f6d7e04ec2f132"
+    },
+    {
+      "path": "assets/papers/catda-literature/paper.pdf",
+      "size": 7740968,
+      "sha256": "330aec3c7020550b2ffb50c6231e1a4de816575df245d3cad4fe5f589fa46a17"
     },
     {
       "path": "assets/papers/clam-mlip/figure-1.webp",
@@ -528,8 +563,8 @@
     },
     {
       "path": "data.js",
-      "size": 401570,
-      "sha256": "e99d4224f8a18ef4497a686269593d3b294c307d57a0edc22c69007398ab5387"
+      "size": 423875,
+      "sha256": "1693ec64f5bce629bc25c3e3b78e479a27bdc898c32f549fd7df18ec4fc00d62"
     },
     {
       "path": "display-labels.js",
@@ -563,8 +598,8 @@
     },
     {
       "path": "palette-view.js",
-      "size": 2495,
-      "sha256": "7203292019d708e913a77e37010da6ee5e622ced3835d7595e304dd5015afba5"
+      "size": 2284,
+      "sha256": "1dbd5987c3178a1a331efeb1d8f15e905036e77cd1016a0f5678599fde143aba"
     },
     {
       "path": "palette.css",
