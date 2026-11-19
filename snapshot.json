@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-19T09:39:03.927Z",
-  "sourceCommit": "cebcc00f2aa176d0e947e057f16896bebda4de53",
+  "updatedAt": "2026-11-19T11:00:19.995Z",
+  "sourceCommit": "28484de83824cbf96e305626e8b936d8bed101a1",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 12,
-    "figures": 72,
-    "methods": 87,
-    "pdfs": 13
+    "papers": 13,
+    "figures": 78,
+    "methods": 96,
+    "pdfs": 14
   },
   "files": [
     {
@@ -19,17 +19,17 @@
     {
       "path": "README.md",
       "size": 1241,
-      "sha256": "2905d547bfd2f4a8a388bce290cb0b3cc77e45e10e524ebd0794bdde92aab041"
+      "sha256": "46879a93b7961302e202a58202a121eec3f8b6ec857219a7584c5b4137fc79e5"
     },
     {
       "path": "about.html",
       "size": 2684,
-      "sha256": "9ef1c375237101b5112f5302e1a3da33ca5824ce4c4da01523b85863aedb9f92"
+      "sha256": "7fdf8f14b9dd7959c067ee4cc2b5091afcd3175e3022a63f96815c850e541a38"
     },
     {
       "path": "app.js",
-      "size": 132707,
-      "sha256": "4005a05265055805ac01825ff154e7f2b88be2c1a7602cf8690ac948556df12d"
+      "size": 138407,
+      "sha256": "e042fe1e6555139991bbbbb99f40c7a993a0ce219a7df50aa81b9ba2aea625f0"
     },
     {
       "path": "assets/favicon.svg",
@@ -347,6 +347,41 @@
       "sha256": "663109bdbc65ffe00dce23d379fba97fecd1ecc76806ab7967e99f617c48d39b"
     },
     {
+      "path": "assets/papers/nmi-crystals/figure-1.webp",
+      "size": 85812,
+      "sha256": "866a3d81de7d0499d6496101769c5233c410ee43ffa022436cd016a933b5ecc5"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/figure-2.webp",
+      "size": 100438,
+      "sha256": "b6b99d246d7d886a54061734ff279ec774bc2b6832d87fbd4a40d97737d3a71d"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/figure-3.webp",
+      "size": 14456,
+      "sha256": "5f5e22b9377f6afe67c9e9e3612e6987cb88d79e9249a84413e161b693dd8e0a"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/figure-4.webp",
+      "size": 96608,
+      "sha256": "dc090dcebdf150169e447eb9b42d861b49204b10eb3ec2a6901dd02c2476fd29"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/figure-5.webp",
+      "size": 135274,
+      "sha256": "9d5f7cd338e2992d26cd0b31fae52cae5a9f36fb96cb2579c036d8a983a75da3"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/figure-6.webp",
+      "size": 94686,
+      "sha256": "0b267c3359600732f1563ee834aa4748cf15d75cf01f5a1d69091e50693cd76c"
+    },
+    {
+      "path": "assets/papers/nmi-crystals/paper.pdf",
+      "size": 3944652,
+      "sha256": "e55e6f3f6b3fd6a000c927ae132682af4ac55c934e7bac1ffaac69abba771957"
+    },
+    {
       "path": "assets/papers/ptfe-skin/figure-1.webp",
       "size": 221246,
       "sha256": "992640ca2f7e057cf77d5aed3db95463e781bdb0e6180caa69aa054bb6356ab2"
@@ -463,18 +498,23 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 437,
-      "sha256": "2711b54fabf1d3faac83ed962a609965f325a428d05165cc222b135c2bb85aaa"
+      "size": 506,
+      "sha256": "63fc0401e6000e2118aca217f19de3e3f3a4b0350a0b0ebdd02fbda7222b82e1"
     },
     {
       "path": "data.js",
-      "size": 361225,
-      "sha256": "81146e638ca2ceb8459faa05047e7c2ab3ac9f85311f789c90709ebebab8f13d"
+      "size": 382796,
+      "sha256": "2b6c81fb31633f000b1a1d903b7903e656804b02367c06cf162ffae072316ce8"
     },
     {
       "path": "display-labels.js",
       "size": 1084,
       "sha256": "97982e830355acdb8a1f923190bec42f629f846676ce218abac82925d019f64c"
+    },
+    {
+      "path": "figure-geometry.js",
+      "size": 7676,
+      "sha256": "2265934aca905d2cf085fc6fe454558b74971a840d052844b77350968ae5b546"
     },
     {
       "path": "figure-tags.js",
@@ -493,8 +533,8 @@
     },
     {
       "path": "library-workflow.js",
-      "size": 2120,
-      "sha256": "ebe95c57c06a8e970654431eab1751b74d7d7bbfe769f870a9ddfb5a683e834d"
+      "size": 3252,
+      "sha256": "02230981822eaae072063542d8b7578493d723cfe7fcf980e4732f676ccb20ce"
     },
     {
       "path": "palette-view.js",
@@ -513,8 +553,8 @@
     },
     {
       "path": "pdf-preflight.js",
-      "size": 4590,
-      "sha256": "871adf59edb501b6c7255f2e195a97d0ec33a8b12a7f4c7760207fa5ab33b821"
+      "size": 5225,
+      "sha256": "9fbabf20624c613d5b9754cb5b941d182cc1b7eb2c2fc63ff9c6cfff4989eb70"
     },
     {
       "path": "reader.css",
