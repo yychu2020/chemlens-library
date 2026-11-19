@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-19T13:46:36.764Z",
-  "sourceCommit": "253227c307771e45faef59ace17f17eb476cc807",
+  "updatedAt": "2026-11-19T14:20:22.430Z",
+  "sourceCommit": "20d80fc11a6041a4693a1348a12fed3da5e8bf5e",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 15,
-    "figures": 88,
-    "methods": 113,
-    "pdfs": 16
+    "papers": 16,
+    "figures": 92,
+    "methods": 122,
+    "pdfs": 17
   },
   "files": [
     {
@@ -18,18 +18,18 @@
     },
     {
       "path": "README.md",
-      "size": 1242,
-      "sha256": "bd82f69c6ad99f522a25a0deb65cb2cde80cac5571ccc7ea0c806e7c1b81abeb"
+      "size": 1356,
+      "sha256": "8fec1dcc3acd9b49f0ce5ac95c4dfb848b95681fec5008aba6616c1c97f85050"
     },
     {
       "path": "about.html",
-      "size": 2685,
-      "sha256": "b081362a79f074df63c789b14dfaf496ecf3cb178819b3ee58f1f0130e053e07"
+      "size": 2762,
+      "sha256": "83ddc841056cdfeb3e80323634ba5d6682128956a2406f3f3c4fa84a178ace97"
     },
     {
       "path": "app.js",
-      "size": 144050,
-      "sha256": "b277d134d26f102c2b94705b49256f8f2bc40b47a57b732d59f806322e6acf2c"
+      "size": 152733,
+      "sha256": "c8cc1e9d0c2ed6a6ad4da143a0b551fa817c30c55a477974b89bff38d01af75b"
     },
     {
       "path": "assets/favicon.svg",
@@ -352,6 +352,31 @@
       "sha256": "9c76158fcceefc0c2023ea5ba5cb518253be99eccb7150fd300ac773d394668c"
     },
     {
+      "path": "assets/papers/mixed-oer/figure-1.webp",
+      "size": 139782,
+      "sha256": "2a957a5707defe05b718b82a9625f256798b4ae4211a03e19fb5588d225916d2"
+    },
+    {
+      "path": "assets/papers/mixed-oer/figure-2.webp",
+      "size": 69770,
+      "sha256": "2a7a76f0a9d91ba561ee3e11eee71186e7ace438be7f8abad645eaab3915ce83"
+    },
+    {
+      "path": "assets/papers/mixed-oer/figure-3.webp",
+      "size": 84650,
+      "sha256": "45ceeca1e95e33d3ea39acb768cd95121303e14809d7283ba0c31787beca1e9e"
+    },
+    {
+      "path": "assets/papers/mixed-oer/figure-4.webp",
+      "size": 139904,
+      "sha256": "8c5b86e92b00a1e806f13279f75c00cbcbbbeb2e06600bd769f5bcdb5a3409f7"
+    },
+    {
+      "path": "assets/papers/mixed-oer/paper.pdf",
+      "size": 2144365,
+      "sha256": "c037db187806e48d2e8dbf6f6cdf3667d1c292473cb73e1e7047b72953644e47"
+    },
+    {
       "path": "assets/papers/network-ml/figure-1.webp",
       "size": 119130,
       "sha256": "77c276097d524c8ca8114f5da0bdb3b2cb2f2c311f342297583fedd9a515e4b2"
@@ -558,13 +583,13 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 538,
-      "sha256": "7f06caf18192ad196f6b82e82e65be7887314438b3fab348ed658d39f6e9f161"
+      "size": 957,
+      "sha256": "507a35026189f6ed723a07b7e09d41cb08f974e07130e6d7654eca3238daf01e"
     },
     {
       "path": "data.js",
-      "size": 423875,
-      "sha256": "1693ec64f5bce629bc25c3e3b78e479a27bdc898c32f549fd7df18ec4fc00d62"
+      "size": 443145,
+      "sha256": "57648b7752b14200538302c384dbab91d0c54e229d66afc126417585d7eda76e"
     },
     {
       "path": "display-labels.js",
@@ -580,6 +605,11 @@
       "path": "figure-tags.js",
       "size": 6261,
       "sha256": "535799ee4c7e0f6fa4544fed45605a8c5b812f1d166fa487e9786dbf1ef181c6"
+    },
+    {
+      "path": "gallery-tools.js",
+      "size": 825,
+      "sha256": "3592b0c001fc87db904579aff600694e86fbf21a7c842d01da36b22b2bc33934"
     },
     {
       "path": "index.html",
@@ -623,8 +653,8 @@
     },
     {
       "path": "styles.css",
-      "size": 77617,
-      "sha256": "389c62f6049c9a08ceddbd9450e7b4d9ddf8dbc9803a0176769f9003a182f0cf"
+      "size": 79734,
+      "sha256": "0f9954f7be21a80eda5fbd05bc688e0ff8b860a73f21f3f4d81551be70e56715"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
