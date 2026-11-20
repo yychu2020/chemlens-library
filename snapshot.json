@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-20T03:04:15.050Z",
-  "sourceCommit": "519b2bbb352e7ed84c6e4eb0d1c55d739c87a8c5",
+  "updatedAt": "2026-11-20T09:09:46.741Z",
+  "sourceCommit": "33c9ca675379cfd7be58f3c7524bb67764154cf9",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 19,
-    "figures": 107,
-    "methods": 141,
-    "pdfs": 20
+    "papers": 20,
+    "figures": 113,
+    "methods": 147,
+    "pdfs": 21
   },
   "files": [
     {
@@ -18,18 +18,18 @@
     },
     {
       "path": "README.md",
-      "size": 1357,
-      "sha256": "6cab7ea67554d7e84692d60cc4f35242c385df21f6e9a40e1159d73a6007813f"
+      "size": 1358,
+      "sha256": "f95b8a571a2248262993e64ad6b3ee7dd1faea35c471f8ec6a98082c512bb355"
     },
     {
       "path": "about.html",
       "size": 2763,
-      "sha256": "0f02c9ddf692cce2ab02a5d10fb0e0bf34c114f33f6233d20e579f05dfe4df6b"
+      "sha256": "24fd6b58ef8836ea618946574b6115743bfe8bd7a0e2dcb4cd5e2cd07c21de10"
     },
     {
       "path": "app.js",
-      "size": 164819,
-      "sha256": "de15a445fb5aa49448366d187e2a18a79b4b8929d48a770a4818bca948801468"
+      "size": 167508,
+      "sha256": "4e048e70670e1ae9c38580d4c421951b7164de152681d39073f4d0ef77ae41ea"
     },
     {
       "path": "assets/favicon.svg",
@@ -502,6 +502,41 @@
       "sha256": "e55e6f3f6b3fd6a000c927ae132682af4ac55c934e7bac1ffaac69abba771957"
     },
     {
+      "path": "assets/papers/pinn-battery/figure-1.webp",
+      "size": 319262,
+      "sha256": "d82e369c3ca98fb92fd063a1d8c699e48e3d63d4e3e71390a1d896f475cc5b4c"
+    },
+    {
+      "path": "assets/papers/pinn-battery/figure-2.webp",
+      "size": 87258,
+      "sha256": "c7d4d86962a5b38f9844031509a8a94b6aa5bfe8faaa640e49cdc1a9f3a8b5d2"
+    },
+    {
+      "path": "assets/papers/pinn-battery/figure-3.webp",
+      "size": 301130,
+      "sha256": "64ae2a69174326b0e85eeaef461821577487fb9a60bcdfe49046048c32e8e139"
+    },
+    {
+      "path": "assets/papers/pinn-battery/figure-4.webp",
+      "size": 408020,
+      "sha256": "9341373ad52cc2027c6aea9a8aca9636f7bb9384460a01ba8aeea2486673342a"
+    },
+    {
+      "path": "assets/papers/pinn-battery/figure-5.webp",
+      "size": 80784,
+      "sha256": "539d18761ad55ad813d2a7d5c498381f259338038988826f546671798683723b"
+    },
+    {
+      "path": "assets/papers/pinn-battery/figure-6.webp",
+      "size": 124356,
+      "sha256": "f489a978e391379f4f8341146b1bf989fab303d42e7f6d34559ed3570b0eac47"
+    },
+    {
+      "path": "assets/papers/pinn-battery/paper.pdf",
+      "size": 16427680,
+      "sha256": "08a25ad4076b92fdf6baa34d09c0ea11fbfda4490fb523fe51cf5ad0e227cfa5"
+    },
+    {
       "path": "assets/papers/ptfe-skin/figure-1.webp",
       "size": 221246,
       "sha256": "992640ca2f7e057cf77d5aed3db95463e781bdb0e6180caa69aa054bb6356ab2"
@@ -673,13 +708,13 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 1020,
-      "sha256": "b4ac646696edf79ba4808dc22cb531759cbbe69c0882533e1ad1a77c406d0e58"
+      "size": 1052,
+      "sha256": "9af882ffeb1428edb43904d0e5b7a10dd7853fa32f22106d5dde8a49679e6e88"
     },
     {
       "path": "data.js",
-      "size": 501332,
-      "sha256": "304d4c5c840198cd0f5c9f3ffe58aef446f349136520a41a67ac28b21b98ebf7"
+      "size": 519430,
+      "sha256": "3d009afc890548b302284fdb9d807107526598944c9b9e6917901365f99e8216"
     },
     {
       "path": "display-labels.js",
@@ -732,9 +767,19 @@
       "sha256": "bd1add511e7706df1edcab58438082b85fd36c05ccbcd084b4d34f56e3382e5c"
     },
     {
+      "path": "paper-identity.js",
+      "size": 3252,
+      "sha256": "542a197066ba1af6f26a388c42020871e4d8e92d30dbfc6dd792bb8ab9e9ae5e"
+    },
+    {
       "path": "paper-names.js",
       "size": 3706,
       "sha256": "faaa701a3b55a3b8e3c4d6a8f05e0c79bd58e302875a54cabb55ebf94b795974"
+    },
+    {
+      "path": "pdf-crop.js",
+      "size": 1523,
+      "sha256": "3284d5d169f29788a9fd30084a1f2182fffde799a422c8debaf95f5f5224f285"
     },
     {
       "path": "pdf-preflight.js",
