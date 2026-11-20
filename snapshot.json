@@ -1,7 +1,7 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-20T01:59:35.071Z",
-  "sourceCommit": "c0625137fe19a17911e66fc8f24ed410f07ec1a8",
+  "updatedAt": "2026-11-20T03:04:15.050Z",
+  "sourceCommit": "519b2bbb352e7ed84c6e4eb0d1c55d739c87a8c5",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
@@ -19,7 +19,7 @@
     {
       "path": "README.md",
       "size": 1357,
-      "sha256": "7dca803538da76c0857737cf52c7ac8537c8b28c15cb1f6f74374602016f307f"
+      "sha256": "6cab7ea67554d7e84692d60cc4f35242c385df21f6e9a40e1159d73a6007813f"
     },
     {
       "path": "about.html",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.js",
-      "size": 155457,
-      "sha256": "ba9fe9d73aefa395bb0eb73b74082bb2275627b2bab0bb9ff4f58b1588ae159d"
+      "size": 164819,
+      "sha256": "de15a445fb5aa49448366d187e2a18a79b4b8929d48a770a4818bca948801468"
     },
     {
       "path": "assets/favicon.svg",
@@ -673,13 +673,13 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 993,
-      "sha256": "1dd0e76a34c02867a61967b5d644497db1d4205ce97d35f844cb7798377ed6f5"
+      "size": 1020,
+      "sha256": "b4ac646696edf79ba4808dc22cb531759cbbe69c0882533e1ad1a77c406d0e58"
     },
     {
       "path": "data.js",
-      "size": 501272,
-      "sha256": "072e54a21d73026c8883c26291a6150a3ce36eaefe91e75dab0f9ff6ea66eaf1"
+      "size": 501332,
+      "sha256": "304d4c5c840198cd0f5c9f3ffe58aef446f349136520a41a67ac28b21b98ebf7"
     },
     {
       "path": "display-labels.js",
@@ -698,8 +698,8 @@
     },
     {
       "path": "gallery-tools.js",
-      "size": 825,
-      "sha256": "3592b0c001fc87db904579aff600694e86fbf21a7c842d01da36b22b2bc33934"
+      "size": 1314,
+      "sha256": "15065a43ce4fce185623c606be70e962341a81ed94dbd70e71fa6e8545826d2d"
     },
     {
       "path": "index.html",
@@ -713,8 +713,8 @@
     },
     {
       "path": "library-workflow.js",
-      "size": 3331,
-      "sha256": "cb22c888bed952151699e83b226c023a4598b497594a8c94755fce34822e67b9"
+      "size": 3412,
+      "sha256": "87d4c26c12f49aaeb2337d2552c76b70e19b3949f74bdbb252d844e489fa0992"
     },
     {
       "path": "palette-view.js",
@@ -748,8 +748,8 @@
     },
     {
       "path": "styles.css",
-      "size": 79818,
-      "sha256": "d3b41be7c072db1ca4aa4607b56de2a4aa26fe9c1847bd83297d3bd431823c36"
+      "size": 83719,
+      "sha256": "e01f5bfa029a9099c80cbdb87062bbc06e3191fff124c8796ae31b6a3641e754"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
