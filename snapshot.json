@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-19T15:02:19.463Z",
-  "sourceCommit": "d8994ad092a41add158c73e87ecb6494f88c6d3b",
+  "updatedAt": "2026-11-20T01:59:35.071Z",
+  "sourceCommit": "c0625137fe19a17911e66fc8f24ed410f07ec1a8",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 17,
-    "figures": 96,
-    "methods": 130,
-    "pdfs": 18
+    "papers": 19,
+    "figures": 107,
+    "methods": 141,
+    "pdfs": 20
   },
   "files": [
     {
@@ -18,18 +18,18 @@
     },
     {
       "path": "README.md",
-      "size": 1356,
-      "sha256": "50dca47816fd56ccf6ba9109aeaee7570c449b01bc708187069c1161bcb77b51"
+      "size": 1357,
+      "sha256": "7dca803538da76c0857737cf52c7ac8537c8b28c15cb1f6f74374602016f307f"
     },
     {
       "path": "about.html",
-      "size": 2762,
-      "sha256": "c2f62237a2ffd0dc4b628e63412aff8cdaee03ff1030746c5ce7f792980d1857"
+      "size": 2763,
+      "sha256": "0f02c9ddf692cce2ab02a5d10fb0e0bf34c114f33f6233d20e579f05dfe4df6b"
     },
     {
       "path": "app.js",
-      "size": 153269,
-      "sha256": "1880e26eecfc7834351600f7d24c9612cffb790aecd522f431234cce8e09ce22"
+      "size": 155457,
+      "sha256": "ba9fe9d73aefa395bb0eb73b74082bb2275627b2bab0bb9ff4f58b1588ae159d"
     },
     {
       "path": "assets/favicon.svg",
@@ -75,6 +75,41 @@
       "path": "assets/papers/alkali-propylene/paper.pdf",
       "size": 11364839,
       "sha256": "662e07c8b52b878238aa5c72285f316b2f9b4491c2d4c97c5cdd21df6edf1cea"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-1.webp",
+      "size": 208330,
+      "sha256": "4e09d96264cd33c8af09c733ff81964f399b1272aacf5a91c432e7606742e1a4"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-2.webp",
+      "size": 92392,
+      "sha256": "d2ee68365e78427513acd37f606effd9061148d0271e37df371b7c9abad45abe"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-3.webp",
+      "size": 64426,
+      "sha256": "fa88999f1ecbe7532e41307259147dc81076c0d0491f63c4f341737e857d6773"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-4.webp",
+      "size": 131746,
+      "sha256": "f9b04b6885ba7f3c69c1fc2b509cd16d518aaeb40f0a97ce2f13592716ac7772"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-5.webp",
+      "size": 87342,
+      "sha256": "0e839e99f414c7ecb0d755e7a3edb51d571c2d973f228544acb2930e3660c747"
+    },
+    {
+      "path": "assets/papers/au-cations/figure-6.webp",
+      "size": 162860,
+      "sha256": "a5be1c18536d56b8cd50b96d294991e031402b23fd35e7c59bf6b409866d6bdc"
+    },
+    {
+      "path": "assets/papers/au-cations/paper.pdf",
+      "size": 8130786,
+      "sha256": "6a1658a08a4f2d7db0f7d28b6751e8c3adecf60b6032d27e63144035fa1b33ef"
     },
     {
       "path": "assets/papers/catda-literature/figure-1.webp",
@@ -547,6 +582,36 @@
       "sha256": "097848b9e3f2182704845807de4be78b86423cac65e626da41d464c6e1cc2e01"
     },
     {
+      "path": "assets/papers/ruo2-water/figure-1.webp",
+      "size": 250338,
+      "sha256": "09a9d67b623b42096bae241c5ed2688bbda40090047b8ff31b4c2e7142b44131"
+    },
+    {
+      "path": "assets/papers/ruo2-water/figure-2.webp",
+      "size": 247406,
+      "sha256": "c114e569544a8344f671719a592c59b239af5cf6ac843931d44b331daec648d8"
+    },
+    {
+      "path": "assets/papers/ruo2-water/figure-3.webp",
+      "size": 103884,
+      "sha256": "bc9d0dbe7adf6d8c914dcab77fcd9345aa52bf1256b8b97c77f2ca2084df7198"
+    },
+    {
+      "path": "assets/papers/ruo2-water/figure-4.webp",
+      "size": 151726,
+      "sha256": "9fa6b7518cc240bf24acb3142efc60687db33d1e06291584845c50753be614f6"
+    },
+    {
+      "path": "assets/papers/ruo2-water/figure-5.webp",
+      "size": 177888,
+      "sha256": "29f0bc3a87791bfcacd7563219cdf049772c18937b376947e8c8522ddb1ff219"
+    },
+    {
+      "path": "assets/papers/ruo2-water/paper.pdf",
+      "size": 4277224,
+      "sha256": "aed9bef2fa72a31704fc50cec07a4b5d3ee9ae463de2701f54f1c8f9c14a5ac6"
+    },
+    {
       "path": "assets/papers/toluene-dehydrogenation/figure-1.webp",
       "size": 599122,
       "sha256": "0cef3774fb019d758a47502e4b32c317f7e4baf007e391883959809d12db8a03"
@@ -608,13 +673,13 @@
     },
     {
       "path": "cloud-client.js",
-      "size": 957,
-      "sha256": "507a35026189f6ed723a07b7e09d41cb08f974e07130e6d7654eca3238daf01e"
+      "size": 993,
+      "sha256": "1dd0e76a34c02867a61967b5d644497db1d4205ce97d35f844cb7798377ed6f5"
     },
     {
       "path": "data.js",
-      "size": 461980,
-      "sha256": "b2ff6f378efd0687f4f1d8fa273198ff909bd9a648b6a6d7818b3fec151b7138"
+      "size": 501272,
+      "sha256": "072e54a21d73026c8883c26291a6150a3ce36eaefe91e75dab0f9ff6ea66eaf1"
     },
     {
       "path": "display-labels.js",
@@ -648,8 +713,8 @@
     },
     {
       "path": "library-workflow.js",
-      "size": 3252,
-      "sha256": "02230981822eaae072063542d8b7578493d723cfe7fcf980e4732f676ccb20ce"
+      "size": 3331,
+      "sha256": "cb22c888bed952151699e83b226c023a4598b497594a8c94755fce34822e67b9"
     },
     {
       "path": "palette-view.js",
@@ -673,8 +738,8 @@
     },
     {
       "path": "pdf-preflight.js",
-      "size": 5970,
-      "sha256": "ef68089daecf977266140e210dffe0c774d58e49e8b91daf0553c36e0bc9981c"
+      "size": 6012,
+      "sha256": "647ae22710a8ff3ec841fabfa11685d305ba653e902c6a001104337d5aca6ddc"
     },
     {
       "path": "reader.css",
