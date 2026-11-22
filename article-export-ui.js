@@ -1,4 +1,4 @@
-import {articleBlocks,articleMarkdown,articlePlainText,articleHTML,articleFilename,articleZIP} from './article-export.js';
+import {articleBlocks,articleMarkdown,articlePlainText,articleHTML,articleFilename,articleZIP,articleImageType} from './article-export.js';
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dataURL=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('图片读取失败'));reader.readAsDataURL(blob);});
 export function createArticleExporter({getPaper,getFigures,getMethods,resolveImage,modal,toast,download,returnToPaper}){
@@ -9,7 +9,7 @@ export function createArticleExporter({getPaper,getFigures,getMethods,resolveIma
   const preview=document.querySelector('#article-export-preview'),status=document.querySelector('#article-export-status');let total=0;const warnings=[];
   for(const [i,f]of figures.entries()){
    if(current!==session||!preview.isConnected)return;
-   try{const src=resolveImage(f,p);if(!src||/favicon\.svg(?:$|[?#])/.test(src))throw Error('无图片');const url=new URL(src,location.href);if(!['http:','https:','data:','blob:'].includes(url.protocol)||url.protocol==='data:'&&!/^data:image\/(png|jpeg|webp);base64,/i.test(src))throw Error('图片格式不支持');const response=await fetch(url.href,{credentials:'same-origin',signal:AbortSignal.timeout(25000)});if(!response.ok)throw Error('图片暂不可用');const blob=await response.blob();if(!/^image\/(png|jpeg|webp)(?:;|$)/i.test(blob.type)||blob.size>12*1024*1024||total+blob.size>70*1024*1024)throw Error('图片格式或大小超限');total+=blob.size;const ext=blob.type.includes('png')?'png':blob.type.includes('webp')?'webp':'jpg';session.assets.push({id:f.id,name:`images/figure-${String(i+1).padStart(2,'0')}.${ext}`,bytes:new Uint8Array(await blob.arrayBuffer())});session.images.set(f.id,await dataURL(blob));
+   try{const src=resolveImage(f,p);if(!src||/favicon\.svg(?:$|[?#])/.test(src))throw Error('无图片');const url=new URL(src,location.href);if(!['http:','https:','data:','blob:'].includes(url.protocol)||url.protocol==='data:'&&!/^data:image\/(png|jpeg|webp);base64,/i.test(src))throw Error('图片格式不支持');const response=await fetch(url.href,{credentials:'same-origin',signal:AbortSignal.timeout(25000)});if(!response.ok)throw Error('图片暂不可用');const blob=await response.blob();if(blob.size>12*1024*1024||total+blob.size>70*1024*1024)throw Error('图片大小超限');const bytes=new Uint8Array(await blob.arrayBuffer()),mime=articleImageType(bytes);if(!mime)throw Error('图片内容格式不支持');total+=blob.size;const ext=mime.includes('png')?'png':mime.includes('webp')?'webp':'jpg';session.assets.push({id:f.id,name:`images/figure-${String(i+1).padStart(2,'0')}.${ext}`,bytes});session.images.set(f.id,await dataURL(new Blob([bytes],{type:mime})));
    }catch{warnings.push(f.number||`图 ${i+1}`);}
   }
   if(current!==session||!preview.isConnected)return;

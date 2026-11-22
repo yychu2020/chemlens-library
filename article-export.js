@@ -4,6 +4,7 @@ const text=v=>typeof v==='string'?v.trim():v==null?'':String(v);
 const list=v=>(Array.isArray(v)?v:[v]).map(text).filter(Boolean);
 const html=s=>text(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const md=s=>text(s).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/([\[\]])/g,'\\$1');
+export function articleImageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff)return 'image/jpeg';if([137,80,78,71,13,10,26,10].every((n,i)=>bytes[i]===n))return 'image/png';if(String.fromCharCode(...bytes.subarray(0,4))==='RIFF'&&String.fromCharCode(...bytes.subarray(8,12))==='WEBP')return 'image/webp';return '';}
 export function articleFilename(p){return paperDisplayName(p).replace(/[<>:"/\\|?*\u0000-\u001f]/g,'-').replace(/[. ]+$/,'').slice(0,130)||'文献解读';}
 export function articleSource(p){return [p.journal,p.year,p.volume?(p.articleNumber?`${p.volume}, ${p.articleNumber}`:p.sourcePages?`${p.volume}, ${p.sourcePages}`:p.volume):p.articleNumber,p.doi?'DOI: '+p.doi:''].filter(Boolean).join(' · ');}
 export function safeArticleURL(value){const s=text(value);if(/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=\s]+$/i.test(s))return s;if(/^images\/[A-Za-z0-9._-]+$/.test(s))return s;try{const u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
