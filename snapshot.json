@@ -1,7 +1,7 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-22T14:39:14.676Z",
-  "sourceCommit": "6ea9a03e44c6c8bdc055e07fbbeb18bd98f518d3",
+  "updatedAt": "2026-11-22T14:51:57.796Z",
+  "sourceCommit": "07a4439484c28e97ddab1b50157b58a914205d40",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
@@ -19,7 +19,7 @@
     {
       "path": "README.md",
       "size": 1358,
-      "sha256": "fe9339c9cf9b31ed31a8a164a6b2528bb87f0e4be0cd5d473f52bedc22440ec6"
+      "sha256": "c0826a770be493e9590eb83a248991594faf3b4778309ce4609261f03a040e90"
     },
     {
       "path": "about.html",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.js",
-      "size": 169411,
-      "sha256": "61bc4604118c25c7a052b5f31f2c09aed31c551a45ae764d257120815548b29e"
+      "size": 172596,
+      "sha256": "d273557830a24870bf35e8df5715617f45ae5a031b418fd77b0837a02425f120"
     },
     {
       "path": "article-export-ui.js",
@@ -808,8 +808,8 @@
     },
     {
       "path": "styles.css",
-      "size": 84567,
-      "sha256": "9ef5be2bfeaa891e5960531881322dfeb319a2d35ea7839b0c206e84958484ac"
+      "size": 86557,
+      "sha256": "8aa27b0f6659e9d4e651819d7b3f1a6efab758e9b11dfb5e5cc65adfe01bafef"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
