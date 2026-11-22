@@ -897,3 +897,5 @@ button.rating-star:hover,button.rating-star:focus-visible{background:var(--ratin
 @media(prefers-reduced-motion:reduce){.rating-star{transition:none}}
 
 .question-type-tabs{margin-bottom:10px}.question-type-tabs+.helper{margin-bottom:20px}.question-card>.status-badge{margin-bottom:12px}
+
+.article-export-tools{display:flex;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:2;padding:12px 0;background:#fafcff}.article-export-preview{margin-top:22px;border:1px solid #dae6f6;background:#fff;border-radius:12px;overflow:hidden}.article-export-preview article{box-sizing:border-box}.article-export-preview img{object-fit:contain}.article-export-preview a{overflow-wrap:anywhere}#article-export-fallback{box-sizing:border-box;width:100%;min-height:220px;margin-top:20px;font-family:monospace;white-space:pre-wrap}@media(max-width:600px){.article-export-tools{position:static}.article-export-tools .button{flex:1 1 45%;font-size:12px}.article-export-preview article{padding:20px 14px!important}}
