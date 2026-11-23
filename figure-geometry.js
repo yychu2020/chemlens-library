@@ -1,12 +1,14 @@
 // Shared PDF figure geometry. Coordinates always use the rendered PDF page, top-left origin.
-export const GEOMETRY_VERSION=2;
+export const GEOMETRY_VERSION=3;
 export function figureKey(value=''){return String(value).normalize('NFKC').toLowerCase().replace(/^(?:figure|fig\.?|图)\s*/i,'').replace(/[\s.]+/g,'').replace(/[|｜:：].*$/,'');}
 export function validBox(b){return !!b&&['x','y','width','height'].every(k=>Number.isFinite(b[k]))&&b.x>=0&&b.y>=0&&b.width>=.005&&b.height>=.002&&b.x+b.width<=1.001&&b.y+b.height<=1.001;}
 export function captionAnchors(content,viewport,page){
  const rows=[];
  for(const item of content.items||[]){if(typeof item.str!=='string'||!item.str.trim()||!item.transform)continue;const [x,y]=viewport.convertToViewportPoint(item.transform[4],item.transform[5]),h=Math.max(3,Math.abs(item.height||item.transform[3]||8)*viewport.scale),w=Math.abs(item.width||item.str.length*h*.4)*viewport.scale;let row=rows.find(r=>Math.abs(r.baseline-y)<Math.max(2,h*.25));if(!row){row={baseline:y,items:[]};rows.push(row);}row.items.push({text:item.str,x,y:y-h,w,h});}
  const anchors=[];
- for(const row of rows){row.items.sort((a,b)=>a.x-b.x);const text=row.items.map(i=>i.text).join(' ').replace(/\s+/g,' ').trim();const m=/^(?:Fig(?:ure)?\.?|图)\s*(\d+)\s*(?:[|｜:：.]\s*|(?=[A-Z\u3400-\u9fff]))/.exec(text);if(!m||/^[a-z]/.test(text.slice(m[0].length)))continue;const left=Math.min(...row.items.map(i=>i.x)),top=Math.min(...row.items.map(i=>i.y)),right=Math.max(...row.items.map(i=>i.x+i.w)),bottom=Math.max(...row.items.map(i=>i.y+i.h));const bbox={x:Math.max(0,left/viewport.width),y:Math.max(0,top/viewport.height),width:Math.min(1,(right-left)/viewport.width),height:Math.min(1,(bottom-top)/viewport.height)};if(validBox(bbox)&&top/viewport.height>.06&&top/viewport.height<.97)anchors.push({number:'Fig. '+m[1],page,bbox,text:text.slice(0,700)});}
+ for(const row of rows){row.items.sort((a,b)=>a.x-b.x);const groups=[];let group=[];for(const item of row.items){if(group.length&&item.x-(group.at(-1).x+group.at(-1).w)>viewport.width*.025){groups.push(group);group=[];}group.push(item);}if(group.length)groups.push(group);
+ for(const items of groups){const text=items.map(i=>i.text).join(' ').replace(/\s+/g,' ').trim();const m=/^(?:Fig(?:ure)?\.?|图)\s*(\d+)\s*(?:[|｜:：.]\s*|(?=[A-Z\u3400-\u9fff]))/.exec(text);if(!m||!/[|｜:：]/.test(m[0])&&/^[a-z]/.test(text.slice(m[0].length)))continue;const left=Math.min(...items.map(i=>i.x)),top=Math.min(...items.map(i=>i.y)),right=Math.max(...items.map(i=>i.x+i.w)),bottom=Math.max(...items.map(i=>i.y+i.h));const bbox={x:Math.max(0,left/viewport.width),y:Math.max(0,top/viewport.height),width:Math.min(1,(right-left)/viewport.width),height:Math.min(1,(bottom-top)/viewport.height)};if(validBox(bbox)&&top/viewport.height>.06&&top/viewport.height<.97)anchors.push({number:'Fig. '+m[1],page,bbox,text:text.slice(0,700)});}}
+
  return anchors;
 }
 export function resolveFigureGeometry(figure,anchors=[]){

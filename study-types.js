@@ -8,7 +8,7 @@ const curated={
  'dynamic-co-paper':'实验','clam-paper':'纯计算','ptfe-paper':'实验',
  'nmi-paper':'纯计算','robot-paper':'实验','catda-paper':'纯计算',
  'oer-paper':'实验','crystalx-paper':'实验','au-cations-paper':'纯计算',
- 'ruo2-water-paper':'纯计算','pinn-battery-paper':'实验'
+ 'ruo2-water-paper':'纯计算','pinn-battery-paper':'实验','grooved-electrodes-paper':'实验'
 };
 export function paperStudyType(p){const chosen=p?.studyType||p?.analysis?.studyType;return STUDY_TYPES.includes(chosen)?chosen:curated[p?.resolvedPaperId||p?.id]||'待分类';}
 export function filterStudyType(papers,type){return STUDY_TYPES.includes(type)?papers.filter(p=>paperStudyType(p)===type):papers;}

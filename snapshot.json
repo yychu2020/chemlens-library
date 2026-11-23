@@ -1,14 +1,14 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-23T01:41:27.857Z",
-  "sourceCommit": "8d7e5bf70a63789a770a18937c26299b1512a8ce",
+  "updatedAt": "2026-11-23T02:25:01.935Z",
+  "sourceCommit": "1853a0731d3c81fd9accbebc4163829552ac146a",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
-    "papers": 20,
-    "figures": 113,
-    "methods": 147,
-    "pdfs": 21
+    "papers": 21,
+    "figures": 119,
+    "methods": 153,
+    "pdfs": 22
   },
   "files": [
     {
@@ -19,17 +19,17 @@
     {
       "path": "README.md",
       "size": 1358,
-      "sha256": "f16298d95712e8375a06685c6855d12bad7757360826798bdf7e9e6ea7777ba2"
+      "sha256": "b4e03dbb05109740ef6f6b3f47a8aeb068fa5144dd3ad8e91f92172763e9e8e4"
     },
     {
       "path": "about.html",
       "size": 2763,
-      "sha256": "e440cd548c20447297d0481a41d57184f80bf0566886f3d19d4e1fd3a80c0529"
+      "sha256": "e00abd414d99a5d39e876afb8bd7019ba1836544a39a0e08901b8e00e1f64d4c"
     },
     {
       "path": "app.js",
-      "size": 174139,
-      "sha256": "1b0f0feedc5c0b41e4bbc9905cbae92ddfe75c77e6c311ed990b3ea67e9e8aea"
+      "size": 176456,
+      "sha256": "4a3fc4ec070d5732c0f7dcc1e8846edffac03c29a465f263d93a39a56024a95b"
     },
     {
       "path": "article-export-ui.js",
@@ -330,6 +330,41 @@
       "path": "assets/papers/glad-nnp/paper.pdf",
       "size": 1203904,
       "sha256": "13740b316707ffee882d12834e36f195745c17ace2b2b60ba254d588f232c514"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-1.webp",
+      "size": 1213642,
+      "sha256": "c5d7a93d700d3e32fd85caa67e63c1c98a18ea411e3ef307c027714cc42db513"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-2.webp",
+      "size": 179788,
+      "sha256": "1292ede15172a80dd215ca3cd11faad455f8044cbb76e8c724b19d8337d6b4ea"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-3.webp",
+      "size": 100316,
+      "sha256": "ec1ca379a2f66fb804d75aaf2d9a856ee6dfc7ea02b2302c2c79cd71260b8641"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-4.webp",
+      "size": 236034,
+      "sha256": "34ff4742b552086e338a82511ebd4e1f994ac3d258034cef55e4705b4e580063"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-5.webp",
+      "size": 174678,
+      "sha256": "fb5c61f9b58bcf6c5a6ecfb8e13f98566082c4bae02d78307bd5af92a8bf0b2c"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/figure-6.webp",
+      "size": 106734,
+      "sha256": "15608655387d998c3d9b0ffd800a449006e58fd715aee0e6e2d0d04ad56dbefb"
+    },
+    {
+      "path": "assets/papers/grooved-electrodes/paper.pdf",
+      "size": 3002027,
+      "sha256": "67c4f366a304081f82792bb6c76a94a346927c1667dd962352e14e257ffa93b4"
     },
     {
       "path": "assets/papers/heenen-workflow/figure-1.webp",
@@ -728,8 +763,8 @@
     },
     {
       "path": "data.js",
-      "size": 519880,
-      "sha256": "a2fca9c06cb53845b79811390231d7187b301b3c451acb7ce50f7b293201e312"
+      "size": 541273,
+      "sha256": "1840f32ea83f143d5dc799266a355c4929675fd38c5c7e0a5aeb62de2afda943"
     },
     {
       "path": "display-labels.js",
@@ -738,8 +773,8 @@
     },
     {
       "path": "figure-geometry.js",
-      "size": 7676,
-      "sha256": "2265934aca905d2cf085fc6fe454558b74971a840d052844b77350968ae5b546"
+      "size": 7947,
+      "sha256": "43c9acc7548ede28f6093f2d9600997a3a8a2f3fe1f4fbdd59d61549e966fd00"
     },
     {
       "path": "figure-tags.js",
@@ -765,6 +800,11 @@
       "path": "library-workflow.js",
       "size": 4656,
       "sha256": "64494631bd0071d8fbb71275af1086047da2c3c3339dd1c7c8df133a6b1a1798"
+    },
+    {
+      "path": "method-categories.js",
+      "size": 2893,
+      "sha256": "3f677c8f86a45badbc28a39658e45ff6c605e02fc68b40fdbcf011859b43ef67"
     },
     {
       "path": "palette-view.js",
@@ -797,9 +837,14 @@
       "sha256": "3284d5d169f29788a9fd30084a1f2182fffde799a422c8debaf95f5f5224f285"
     },
     {
+      "path": "pdf-figure-regions.js",
+      "size": 7143,
+      "sha256": "205083e76814bf2c85f87ecc05969eaca760e38f5f034ae0249f8128c945b7ab"
+    },
+    {
       "path": "pdf-preflight.js",
-      "size": 6012,
-      "sha256": "647ae22710a8ff3ec841fabfa11685d305ba653e902c6a001104337d5aca6ddc"
+      "size": 6213,
+      "sha256": "8b8913f4783cbf1a38f453330a388283fee40dc78ea5638342fefbaa21b003c8"
     },
     {
       "path": "reader.css",
@@ -813,13 +858,13 @@
     },
     {
       "path": "study-types.js",
-      "size": 1068,
-      "sha256": "d617e6c2bde65991273d0e8742870ece7d44d7417b228beb538818d9f785ec08"
+      "size": 1118,
+      "sha256": "c41d28840328f89bffffdcd68eaabba481fa6d5508c2071e60ce1b6cc80ecb87"
     },
     {
       "path": "styles.css",
-      "size": 86783,
-      "sha256": "945b0bbf729bd8210f974347ccb7801360f80a8b70e257251e89ee5d34b201f6"
+      "size": 87527,
+      "sha256": "a1699ec5f707f6ba1bb8d32837ccc4c9d37e0db8a14eaff4990e71d112338e87"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
