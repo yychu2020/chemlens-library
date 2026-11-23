@@ -206,7 +206,7 @@ function renderContent(){
  const focus=document.activeElement?.id==='tag-query'?{start:document.activeElement.selectionStart,end:document.activeElement.selectionEnd}:null;
  $('#content').innerHTML=(!identity.authenticated?'<p class="hint workspace-readonly" role="status">公开阅读版：论文、原图、中文解读与计算方法均可直接浏览。上传 PDF、AI 解读与编辑请前往 AI 工作台。</p>':'')+(view==='papers'?papersView():view==='pending'?pendingView():view==='tokens'?tokensView():view==='methods'?methodsView():view==='questions'?questionsView():view==='ideas'?ideasView():view==='admin'&&identity.isCatalogAdmin?adminView():galleryView(view==='saved'));
  syncWorkspaceControls();
- $('#content').insertAdjacentHTML('beforeend','<footer class="reader-footer">资料快照：2026-11-22 · <a href="about.html">阅读版与 AI 工作台有何区别？</a> · <a href="https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/#papers" target="_blank" rel="noopener noreferrer">AI 工作台</a></footer>');
+ $('#content').insertAdjacentHTML('beforeend','<footer class="reader-footer">资料快照：2026-11-23 · <a href="about.html">阅读版与 AI 工作台有何区别？</a> · <a href="https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/#papers" target="_blank" rel="noopener noreferrer">AI 工作台</a></footer>');
  $('#catalog-paper-select')?.addEventListener('change',e=>{adminPaperId=e.target.value;renderContent();});
  for(const [id,key] of [['paper-year-filter','year'],['paper-journal-filter','journal'],['paper-field-filter','field']])$('#'+id)?.addEventListener('change',e=>{paperFilters[key]=e.target.value;renderContent();$('#'+id)?.focus();});
  $('#method-filter')?.addEventListener('change',e=>{methodFilter=e.target.value;renderContent();});

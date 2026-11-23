@@ -10,6 +10,18 @@ export function articleImageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&byt
 export function articleFilename(p){return paperDisplayName(p).replace(/[<>:"/\\|?*\u0000-\u001f]/g,'-').replace(/[. ]+$/,'').slice(0,130)||'文献解读';}
 export function articleSource(p){return [p.journal,p.year,p.volume?(p.articleNumber?`${p.volume}, ${p.articleNumber}`:p.sourcePages?`${p.volume}, ${p.sourcePages}`:p.volume):p.articleNumber,p.doi?'DOI: '+p.doi:''].filter(Boolean).join(' · ');}
 export function safeArticleURL(value){const s=text(value);if(/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=\s]+$/i.test(s))return s;if(/^images\/[A-Za-z0-9._-]+$/.test(s))return s;try{const u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
+// Remove only a repeated caption heading; retain all panel descriptions,
+// conditions and values from the original translated caption.
+const captionTitleKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/剖面/g,'曲线').replace(/以及|与|和|及|的|建模|计算|分析/g,'').replace(/[^\p{L}\p{N}]/gu,'');
+export function articleCaptionBody(figure,caption){
+ const original=text(caption),withoutNumber=original.replace(/^(?:图\s*[A-Za-z]?\d+[a-z]?|(?:Fig(?:ure)?\.?|Extended Data Fig\.?)\s*[A-Za-z]?\d+[a-z]?)\s*[|｜:：.、-]?\s*/i,'');
+ const title=figureDisplayTitle(figure).replace(/^图\s*[^｜|]+[｜|]\s*/,''),expected=captionTitleKey(title);
+ const repeated=lead=>{const a=captionTitleKey(lead);if(!a||!expected)return false;if(a===expected)return true;if(Math.min(a.length,expected.length)<6)return false;const left=new Set([...a].slice(0,-1).map((_,i)=>a.slice(i,i+2))),right=new Set([...expected].slice(0,-1).map((_,i)=>expected.slice(i,i+2)));return 2*[...left].filter(x=>right.has(x)).length/(left.size+right.size)>=.82;};
+ const end=withoutNumber.search(/[。\n]/);if(end>=0&&repeated(withoutNumber.slice(0,end)))return withoutNumber.slice(end+1).trim();
+ if(repeated(withoutNumber))return '';
+ const panel=withoutNumber.search(/[（(][a-h](?:[–−-][a-h])?[)）]/i);if(panel>0&&repeated(withoutNumber.slice(0,panel).replace(/[：:;；]$/,'')))return withoutNumber.slice(panel).trim();
+ return withoutNumber;
+}
 export function articleBlocks(p,figures=[],methods=[],{images=new Map(),readingURL=''}={}){
  const blocks=[],add=(type,value,extra={})=>{if(text(value))blocks.push({type,text:text(value),...extra});},heading=(value,level=2)=>add('heading',value,{level}),para=value=>add('paragraph',value),label=(name,value)=>{if(text(value))add('label',value,{label:name});},bullets=values=>{const items=list(values);if(items.length)blocks.push({type:'list',items});};
  heading(paperDisplayName(p),1);label('中文原题',p.chineseTitle||p.title);para(p.englishTitle);para(list(p.authors).join(' · '));para(articleSource(p)||p.sourceInfo);
@@ -19,7 +31,7 @@ export function articleBlocks(p,figures=[],methods=[],{images=new Map(),readingU
  if(list(summary.mainFindings).length){heading('主要发现');bullets(summary.mainFindings);}
  if(insight.highlight||insight.reasoning||summary.novelty){heading('研究亮点');para(insight.highlight);if(insight.reasoning!==insight.highlight)para(insight.reasoning);if(summary.novelty!==insight.highlight&&summary.novelty!==insight.reasoning)label('创新与机制线索',summary.novelty);}
  const fs=[...figures].sort((a,b)=>text(a.number).localeCompare(text(b.number),'en',{numeric:true}));
- if(fs.length){heading('图表解读');for(const f of fs){heading(figureDisplayTitle(f),3);const image=safeArticleURL(images.get(f.id)||f.exportImage||'');if(image)blocks.push({type:'image',url:image,text:figureDisplayTitle(f)});else para('图片待补充，请对照原论文查看。');if(f.sourcePreview)para('此处为原文页面预览，图表选区尚待核对。');const translated=figureCaptionZh(f,p);if(translated)label('图注（中文翻译）',translated);else label('图注（中文翻译）','尚未录入中文图注，请对照原文补充。');label('简要说明',f.description||f.caption);label('这张图回答什么',f.question);label('坐标、图例与阅读方式',f.reading);label('关键观察',f.finding);label('适用条件与边界',f.limits);label('相关方法',f.method);if(f.page)para(`原文位置：PDF 第 ${f.page} 页。`);}}
+ if(fs.length){heading('图表解读');for(const f of fs){heading(figureDisplayTitle(f),3);const image=safeArticleURL(images.get(f.id)||f.exportImage||'');if(image)blocks.push({type:'image',url:image,text:figureDisplayTitle(f)});else para('图片待补充，请对照原论文查看。');if(f.sourcePreview)para('此处为原文页面预览，图表选区尚待核对。');const translated=figureCaptionZh(f,p),captionBody=translated?articleCaptionBody(f,translated):'';if(translated)para(captionBody);else para('尚未录入中文图注，请对照原文补充。');const brief=articleCaptionBody(f,f.description||f.caption||'');if(brief&&captionTitleKey(brief)!==captionTitleKey(captionBody))label('简要说明',brief);label('这张图回答什么',f.question);label('坐标、图例与阅读方式',f.reading);label('关键观察',f.finding);label('适用条件与边界',f.limits);label('相关方法',f.method);if(f.page)para(`原文位置：PDF 第 ${f.page} 页。`);}}
  if(methods.length){heading('计算与技术步骤');for(const [i,m]of methods.entries()){heading(`${i+1}. ${m.title||'方法记录'}`,3);label('软件与工具',m.software);para(m.parameters||m.description);label('原文依据',m.evidence||m.evidenceText);const page=m.page||m.evidencePage;if(page)para(`原文位置：PDF 第 ${page} 页。`);}}
  if(list(summary.limitations).length||insight.caveat){heading('局限与阅读提醒');bullets(summary.limitations);para(insight.caveat);}
  if(list(p.analysis?.ideas).length){heading('后续研究思路（待验证）');bullets(p.analysis.ideas);}
