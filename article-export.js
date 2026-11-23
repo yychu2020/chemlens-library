@@ -14,7 +14,7 @@ export function safeArticleURL(value){const s=text(value);if(/^data:image\/(?:pn
 // conditions and values from the original translated caption.
 const captionTitleKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/剖面/g,'曲线').replace(/以及|与|和|及|的|建模|计算|分析/g,'').replace(/[^\p{L}\p{N}]/gu,'');
 export function articleCaptionBody(figure,caption){
- const original=text(caption),withoutNumber=original.replace(/^(?:图\s*[A-Za-z]?\d+[a-z]?|(?:Fig(?:ure)?\.?|Extended Data Fig\.?)\s*[A-Za-z]?\d+[a-z]?)\s*[|｜:：.、-]?\s*/i,'');
+ const original=text(caption).replace(/^(?:\*\*|#{1,6}\s*)?图注\s*[（(]\s*中文翻译\s*[）)]\s*[:：]?\s*(?:\*\*)?\s*/u,''),withoutNumber=original.replace(/^(?:图\s*[A-Za-z]?\d+[a-z]?|(?:Fig(?:ure)?\.?|Extended Data Fig\.?)\s*[A-Za-z]?\d+[a-z]?)\s*[|｜:：.、-]?\s*/i,'');
  const title=figureDisplayTitle(figure).replace(/^图\s*[^｜|]+[｜|]\s*/,''),expected=captionTitleKey(title);
  const repeated=lead=>{const a=captionTitleKey(lead);if(!a||!expected)return false;if(a===expected)return true;if(Math.min(a.length,expected.length)<6)return false;const left=new Set([...a].slice(0,-1).map((_,i)=>a.slice(i,i+2))),right=new Set([...expected].slice(0,-1).map((_,i)=>expected.slice(i,i+2)));return 2*[...left].filter(x=>right.has(x)).length/(left.size+right.size)>=.82;};
  const end=withoutNumber.search(/[。\n]/);if(end>=0&&repeated(withoutNumber.slice(0,end)))return withoutNumber.slice(end+1).trim();

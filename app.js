@@ -1,6 +1,6 @@
 import {scientificHTML} from './scientific-text.js';
 import {figureCaptionZh} from './caption-translations.js';
-import {createArticleExporter} from './article-export-ui.js';
+import {createArticleExporter} from './article-export-ui.js?v=20261123-plain-caption';
 import {paperStudyType,STUDY_TYPES,filterStudyType} from './study-types.js';
 import {canRetryAnalysis} from './library-workflow.js';
 import {pdfSHA256,identityFromPDF,findPaperDuplicate} from './paper-identity.js';
