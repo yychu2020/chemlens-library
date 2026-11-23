@@ -1,7 +1,7 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-23T02:25:01.935Z",
-  "sourceCommit": "1853a0731d3c81fd9accbebc4163829552ac146a",
+  "updatedAt": "2026-11-23T03:24:31.022Z",
+  "sourceCommit": "50d32dc24aba4d135cac53d9f88fb2e85aa1734a",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
@@ -19,7 +19,7 @@
     {
       "path": "README.md",
       "size": 1358,
-      "sha256": "b4e03dbb05109740ef6f6b3f47a8aeb068fa5144dd3ad8e91f92172763e9e8e4"
+      "sha256": "10153f2703d3405d1b816330364cb35e4225ddb76c55bfe5fd7a5942cebf791a"
     },
     {
       "path": "about.html",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.js",
-      "size": 176456,
-      "sha256": "4a3fc4ec070d5732c0f7dcc1e8846edffac03c29a465f263d93a39a56024a95b"
+      "size": 178006,
+      "sha256": "d090092114aec45ffb6ee141b87e5d3c346f5334d78279120e894e07c27ce6cc"
     },
     {
       "path": "article-export-ui.js",
@@ -822,6 +822,16 @@
       "sha256": "bd1add511e7706df1edcab58438082b85fd36c05ccbcd084b4d34f56e3382e5c"
     },
     {
+      "path": "paper-discovery-ui.js",
+      "size": 18534,
+      "sha256": "2a4ad3bce83425b086f876d5c85a386d88a6e4852497c8cccd7cb62e107a0e95"
+    },
+    {
+      "path": "paper-discovery.js",
+      "size": 8471,
+      "sha256": "23f40c10cd06b3de151b011045fc2405f30e1dbda82aa0fe96c281f7329459a2"
+    },
+    {
       "path": "paper-identity.js",
       "size": 3252,
       "sha256": "542a197066ba1af6f26a388c42020871e4d8e92d30dbfc6dd792bb8ab9e9ae5e"
@@ -863,8 +873,8 @@
     },
     {
       "path": "styles.css",
-      "size": 87527,
-      "sha256": "a1699ec5f707f6ba1bb8d32837ccc4c9d37e0db8a14eaff4990e71d112338e87"
+      "size": 95184,
+      "sha256": "41c1acd934b2d607f742d617d4f8450d9256d7813b9fdfcf82711812bfcdf547"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
