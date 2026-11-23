@@ -945,3 +945,13 @@ html,.adaptive-scroll-viewport{scrollbar-width:none!important}html::-webkit-scro
 .paper-card:not(.pending-paper-card) .paper-sync-corner{right:10px;bottom:10px}
 .paper-card:has(.paper-sync-corner) .paper-card-footer{padding-right:27px}
 @media(max-width:620px){.paper-card:not(.pending-paper-card){padding:15px}.paper-card:not(.pending-paper-card) .paper-insight-mini{padding:10px 11px}.paper-card-footer{gap:8px;margin-top:7px}.paper-card .paper-card-footer .action-row{flex-wrap:wrap}}
+/* Use the available viewport instead of centering a fixed-width workspace. */
+.content{width:100%;max-width:none;padding-inline:clamp(20px,2vw,48px)}
+.paper-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr))}
+.gallery{grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.method-grid,.question-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr))}
+.note-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+.discovery-entries{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));align-items:start}
+@media(max-width:620px){.content{padding-inline:17px}}
+.discovery-scoring-note{margin:16px 0 0;color:var(--text-secondary);font-size:14px;line-height:1.8}
+.discovery-entry{min-width:0}.discovery-entry h3,.discovery-english,.discovery-reason{overflow-wrap:anywhere}.discovery-empty{grid-column:1/-1}
