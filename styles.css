@@ -960,3 +960,8 @@ html,.adaptive-scroll-viewport{scrollbar-width:none!important}html::-webkit-scro
 #nav{display:flex;flex-direction:column}.nav-utilities{margin-top:auto;padding-top:18px}.nav-utilities .nav-item{width:100%}.usage-pagination{margin:16px 0}.manual-crop-banner .button{flex-shrink:0}
 
 .submission-panel{margin-bottom:24px}.submission-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid #dce6f4}.submission-row h3{margin:0;font-size:16px}.submission-row p{margin:6px 0;font-size:14px;color:#45617f}@media(max-width:700px){.submission-row{align-items:flex-start;flex-direction:column}}
+
+.crop-selection{border:2px solid #e76875;background:#f6a4ad55;box-shadow:0 0 0 9999px #5c182a22,0 0 0 1px #fff9}.manual-crop-comparison section:last-child{border-color:#ed9ca7;background:#fff2f3}.manual-crop-banner{background:#fff0f2;color:#8d3040;border-bottom:1px solid #f1b5be}
+
+.daily-discovery-panel{margin:22px 0}.daily-discovery-panel p{font-size:14px;line-height:1.8}.daily-discovery-panel .action-row{flex-wrap:wrap;gap:14px}.daily-discovery-panel input[type=checkbox]{accent-color:#216ae8}.daily-job-state{font-variant-numeric:tabular-nums}.wechat-cover-preview{display:block;width:min(100%,450px);max-height:240px;object-fit:contain;background:#fff;border:1px solid #d7e3f4;border-radius:8px;margin:12px 0}#wechat-status{white-space:pre-wrap;overflow-wrap:anywhere}
+.button[data-action="figure-repair"]{background:#fff0f2;border-color:#ed9ca7;color:#a92f45;box-shadow:0 2px 7px #bf3e5514}.button[data-action="figure-repair"]:hover,.button[data-action="figure-repair"]:focus-visible{background:#ffe0e5;border-color:#d85b70;color:#8f2035}

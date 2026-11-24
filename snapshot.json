@@ -1,7 +1,7 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-24T02:13:21.665Z",
-  "sourceCommit": "7d33c5c658a6d7845ce6325948c8c8b72908880a",
+  "updatedAt": "2026-11-24T02:48:01.613Z",
+  "sourceCommit": "11cbdcb8bd51fd229cce9be5455108aa14199b59",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
@@ -19,7 +19,7 @@
     {
       "path": "README.md",
       "size": 1358,
-      "sha256": "74df3dd9e86bc08d2c452a1ab7c67ec537189b44093ba78f0ca9747d5774fa0c"
+      "sha256": "e371a1df0ffcc7c0f4c388a5a44602da19def2eb2773530306933378c43ad8d9"
     },
     {
       "path": "about.html",
@@ -32,19 +32,19 @@
       "sha256": "dc852fba90c6907ee8894731847134a693886591428f15c53315f05f68cb70c7"
     },
     {
-      "path": "app-QGOUUKE7.js",
-      "size": 1120290,
-      "sha256": "26d6bacb7501dd020d4c07ae4f07e54feb408fbf120171c14657bfccf1bd0af2"
+      "path": "app-MULFKXR2.js",
+      "size": 1135733,
+      "sha256": "ac9b49e5fff248aeba8ba3f37697a8a00fcb685d57b5b21155f1e4d3a5ac791b"
     },
     {
       "path": "app.js",
-      "size": 195814,
-      "sha256": "c83ea8293bafa77a8a3371b7a8c85a57881641a80559fca4b32931f8ead6fbef"
+      "size": 195902,
+      "sha256": "c755194a66bdfb030d7a51a529b97de817a25e45481783ab45dc6821e723e7ec"
     },
     {
       "path": "article-export-ui.js",
-      "size": 6178,
-      "sha256": "eb96a0b306b6f58514eeddea4e283fc52ee0dda9ae3e179daab4f899449f046f"
+      "size": 6666,
+      "sha256": "20dbf2a3cb3d66f6c036e1e2ab516263c3cdc94d2c09ac6c3b586f2aedbe7248"
     },
     {
       "path": "article-export.js",
@@ -772,14 +772,19 @@
       "sha256": "b1b556af0254572391b7dd58e72aef87523de597bb205c81b71b500800e70e99"
     },
     {
+      "path": "daily-discovery-ui.js",
+      "size": 4858,
+      "sha256": "cf29bff97a4d8f65b47afd56b53fb3f5a32c4cd39ab4e92962ceeda251abfa33"
+    },
+    {
       "path": "data.js",
       "size": 541273,
       "sha256": "1840f32ea83f143d5dc799266a355c4929675fd38c5c7e0a5aeb62de2afda943"
     },
     {
       "path": "discovery-workspace-ui.js",
-      "size": 20437,
-      "sha256": "649cd7b4614b2192da82e129c4beaeb6f7dedbec1adf831067b7ff366d050c00"
+      "size": 20775,
+      "sha256": "061f9029a62d2b3bb71753df6ed9b7e3b9e7e012d3ec3793abd43e59a9392cff"
     },
     {
       "path": "display-labels.js",
@@ -804,7 +809,7 @@
     {
       "path": "index.html",
       "size": 1024,
-      "sha256": "81803518660ddb70ecea6aee990fb5f90591d23e9c43fe394eadfb69f92d38b6"
+      "sha256": "018d78489810d38aaf58613e6fce8d3155312166dc02d504ca98f48fd74c6956"
     },
     {
       "path": "library-filters.js",
@@ -898,8 +903,8 @@
     },
     {
       "path": "styles.css",
-      "size": 105491,
-      "sha256": "c7b2a5f6527f822061d75a518d436b5de1da065de66549d97764a1f86484da7c"
+      "size": 106545,
+      "sha256": "5501624d993ad7ef08057620b812e853720d818a39e7c5be4a2799c666dc9439"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
@@ -1925,6 +1930,11 @@
       "path": "vendor/tokenizer.js",
       "size": 2329979,
       "sha256": "7dd6c5c1f208152b6bf9a980395ac9062c12a3abd426d5a8ee12eb8d6341a1b6"
+    },
+    {
+      "path": "wechat-export-ui.js",
+      "size": 9545,
+      "sha256": "3e31f1e332ae6583e942a81d7291d2c92c229190b7c2351ae79b2813dbe8752d"
     }
   ]
 }

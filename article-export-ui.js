@@ -1,12 +1,13 @@
+import {createWechatExporter} from './wechat-export-ui.js';
 import {figureCaptionZh} from './caption-translations.js';
 import {articleBlocks,articleMarkdown,articlePlainText,articleHTML,articleFilename,articleZIP,articleImageType} from './article-export.js?v=20261124-narrative-export';
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dataURL=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('图片读取失败'));reader.readAsDataURL(blob);});
-export function createArticleExporter({getPaper,getFigures,getMethods,resolveImage,modal,toast,download,prepareCaptions,returnToPaper}){
- let current=null;
+export function createArticleExporter({getPaper,getFigures,getMethods,resolveImage,modal,toast,download,prepareCaptions,returnToPaper,getAccess=()=>({})}){
+ let current=null;const wechat=createWechatExporter({getSession:()=>current,getAccess,modal,toast});
  async function open(id){
   const paper=getPaper(id);if(!paper)return;const p=structuredClone(paper),figures=structuredClone(getFigures(id)),methods=structuredClone(getMethods(id)),session={id,p,figures,methods,assets:[],images:new Map(),ready:false,busy:false};current=session;
-  modal('公众号稿件导出',`<div class="article-export-tools"><button class="button primary" data-action="article-md" disabled>下载 .md 文件</button><button class="button secondary" data-action="article-copy" disabled>一键复制图文</button><button class="button secondary" data-action="article-zip" disabled>下载图文素材包</button><button class="button ghost" data-action="article-return" data-id="${escape(id)}">返回文献</button></div><p id="article-export-status" class="helper" role="status">正在整理正文、图注和原图…</p><p class="helper">Markdown 文件内嵌图片；素材包含独立图片、Markdown 和排版预览。公众号编辑器若未接收粘贴的图片，可从素材包上传原图。</p><div id="article-export-preview" class="article-export-preview" aria-label="公众号稿件预览"></div><textarea id="article-export-fallback" class="input" hidden readonly aria-label="手动复制 Markdown"></textarea>`,{wide:true,kind:'article-export'});
+  modal('公众号稿件导出',`<div class="article-export-tools">${getAccess().authenticated&&!getAccess().staticReader?'<button class="button secondary" data-action="article-wechat-settings">关联公众号</button><button class="button primary" data-action="article-wechat" disabled>导入公众号草稿箱</button>':''}<button class="button primary" data-action="article-md" disabled>下载 .md 文件</button><button class="button secondary" data-action="article-copy" disabled>一键复制图文</button><button class="button secondary" data-action="article-zip" disabled>下载图文素材包</button><button class="button ghost" data-action="article-return" data-id="${escape(id)}">返回文献</button></div><p id="article-export-status" class="helper" role="status">正在整理正文、图注和原图…</p><p class="helper">Markdown 文件内嵌图片；素材包含独立图片、Markdown 和排版预览。公众号编辑器若未接收粘贴的图片，可从素材包上传原图。</p><div id="article-export-preview" class="article-export-preview" aria-label="公众号稿件预览"></div><textarea id="article-export-fallback" class="input" hidden readonly aria-label="手动复制 Markdown"></textarea>`,{wide:true,kind:'article-export'});
   const preview=document.querySelector('#article-export-preview'),status=document.querySelector('#article-export-status');let total=0;const warnings=[];
   if(prepareCaptions)await prepareCaptions(p,figures,message=>{if(status.isConnected)status.textContent=message;});
   for(const [i,f]of figures.entries()){
@@ -20,6 +21,7 @@ export function createArticleExporter({getPaper,getFigures,getMethods,resolveIma
   document.querySelectorAll('.article-export-tools button[disabled]').forEach(button=>button.disabled=false);
  }
  async function action(kind){
+  if(kind.startsWith('article-wechat'))return wechat.action(kind);
   if(kind==='article-return'){if(current)returnToPaper(current.id);return;}
   const s=current;if(!s?.ready||s.busy||!document.querySelector('#article-export-preview'))return;
   const name=articleFilename(s.p);
