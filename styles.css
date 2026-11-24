@@ -955,3 +955,4 @@ html,.adaptive-scroll-viewport{scrollbar-width:none!important}html::-webkit-scro
 @media(max-width:620px){.content{padding-inline:17px}}
 .discovery-scoring-note{margin:16px 0 0;color:var(--text-secondary);font-size:14px;line-height:1.8}
 .discovery-entry{min-width:0}.discovery-entry h3,.discovery-english,.discovery-reason{overflow-wrap:anywhere}.discovery-empty{grid-column:1/-1}
+.gallery-purpose{text-align:right;margin-left:auto}.gallery-purpose h2{font-size:20px;line-height:1.5;color:var(--text-strong);margin:0 0 5px}.gallery-purpose p{font-size:12px;line-height:1.8;color:var(--text-secondary);margin:0}.page-heading:has(.gallery-purpose){align-items:center}.figure-description:empty{display:none}@media(max-width:700px){.page-heading:has(.gallery-purpose){flex-wrap:wrap;align-items:flex-start}.gallery-purpose{text-align:left;margin-left:0}.gallery-purpose h2{font-size:18px}}

@@ -1,6 +1,7 @@
 import {normalizeDOI} from './paper-identity.js';
 export const DISCOVERY_VERSION=1;
-export const DISCOVERY_RULE='theoldreader-relevance-v1';
+export const DISCOVERY_RULE='research-overlap-v2';
+export const DISCOVERY_THRESHOLD=4;
 export const DISCOVERY_PROFILE='反应：电催化（ORR、OER、HER、丙烯电氧化）、耦合水电解、燃料电池。\n材料：M–N–C单/双原子、铂基合金、纳米团簇、过渡金属氧化物。\n方法：DFT、机器学习势、分子动力学、AI驱动材料发现。';
 // Journal selection and the relevance rubric follow Smart_RSS_V4.py. No account
 // credentials or personal search results from the desktop script are embedded.

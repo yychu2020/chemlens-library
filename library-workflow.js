@@ -6,9 +6,8 @@ export function isPendingPaper(p){return !p.demo&&!hasPaperAnalysis(p);}
 export function canRetryAnalysis(p){return p?.status==='failed'&&!p.analysis&&['AI_RESULT_INVALID','AI_RESULT_INCOMPLETE','AI_TASK_FAILED','AI_REFUSED','PDF_PREPARATION_FAILED','AI_RATE_LIMITED','AI_AUTH_FAILED','AI_UPSTREAM_ERROR'].includes(p.error?.code)&&(p.analysisAttempts||[]).length<10;}
 const filenameKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu,'');
 export function linkReviewedUploads(state,curated){
- const known=curated.filter(p=>p.sourceSha256&&hasPaperAnalysis(p));
- for(const p of state.papers){if(p.example||hasPaperAnalysis(p))continue;
-  const match=known.find(k=>p.id!==k.id&&(p.sourceSha256?p.sourceSha256===k.sourceSha256:p.pages===k.pages&&filenameKey(p.filename)&&filenameKey(p.filename)===filenameKey(k.filename)));
+ for(const p of state.papers){if(p.manualEdited)continue;if(hasPaperAnalysis(p)&&p.journal&&p.year&&state.figures?.some(f=>f.paperId===p.id)&&state.methods?.some(m=>m.paperId===p.id))continue;
+  const match=matchingReviewedPaper(p,curated);
   if(match)p.resolvedPaperId=match.id;
  }
  return state;
@@ -27,3 +26,6 @@ export function usageHistory(papers,curated=[],events=[]){
  return rows.sort((a,b)=>(b.at||'').localeCompare(a.at||'')||a.id.localeCompare(b.id));
 }
 export function usageTotals(rows){return rows.reduce((a,r)=>{if(r.measured){a.input+=r.usage.inputTokens;a.output+=r.usage.outputTokens;a.total+=r.usage.totalTokens;a.measured++;}else a.unrecorded++;return a;},{input:0,output:0,total:0,measured:0,unrecorded:0});}
+import {normalizeDOI} from './paper-identity.js';
+export function matchingReviewedPaper(p,curated){const known=curated.filter(k=>k.id!==p.id&&k.sourceSha256&&hasPaperAnalysis(k));if(p.sourceSha256)return known.find(k=>p.sourceSha256===k.sourceSha256);const doi=normalizeDOI(p.doi||p.analysis?.metadata?.doi||p.url);return known.find(k=>doi?doi===normalizeDOI(k.doi):p.pages===k.pages&&filenameKey(p.filename)&&filenameKey(p.filename)===filenameKey(k.filename));}
+export function restoreCuratedRecords(state,curated){for(const base of curated.papers){const p=state.papers.find(x=>x.id===base.id);if(!p)continue;for(const key of ['title','englishTitle','authors','journal','year','volume','doi','url','sourcePages','researchFields','summary']){const value=p[key];if(value==null||value===''||Array.isArray(value)&&!value.length||typeof value==='string'&&/^待|待核实|来源信息待/.test(value)){if(base[key]!==undefined)p[key]=structuredClone(base[key]);}}if(!p.insightEdited&&(!p.insight||/^待研读|待梳理/.test(p.insight.highlight||'')))p.insight=structuredClone(base.insight);if(!p.shortTitleEdited&&base.shortTitle)p.shortTitle=base.shortTitle;if(p.example&&p.cloud){p.cloud=false;p.pdfUrl=base.pdfUrl;}for(const key of ['figures','methods'])for(const item of curated[key].filter(x=>x.paperId===base.id))if(!state[key].some(x=>x.id===item.id))state[key].push(structuredClone(item));}return linkReviewedUploads(state,curated.papers);}
