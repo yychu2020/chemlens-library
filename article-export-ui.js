@@ -1,5 +1,5 @@
 import {figureCaptionZh} from './caption-translations.js';
-import {articleBlocks,articleMarkdown,articlePlainText,articleHTML,articleFilename,articleZIP,articleImageType} from './article-export.js?v=20261123-plain-caption';
+import {articleBlocks,articleMarkdown,articlePlainText,articleHTML,articleFilename,articleZIP,articleImageType} from './article-export.js?v=20261124-narrative-export';
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dataURL=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('图片读取失败'));reader.readAsDataURL(blob);});
 export function createArticleExporter({getPaper,getFigures,getMethods,resolveImage,modal,toast,download,prepareCaptions,returnToPaper}){

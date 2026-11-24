@@ -1,7 +1,7 @@
 {
   "edition": "github-pages-public-reader",
-  "updatedAt": "2026-11-24T01:05:00.684Z",
-  "sourceCommit": "2d1e117040158c889913f29b00cbe7a91f14420e",
+  "updatedAt": "2026-11-24T01:37:17.865Z",
+  "sourceCommit": "48ca7f2c11db0c33ab8e43eebc1ba9f623c9417d",
   "sourceWorkspace": "https://chemlens-yychu2020.chuyuyi1998.chatgpt.site/",
   "siteUrl": "https://yychu2020.github.io/chemlens-library/",
   "counts": {
@@ -19,7 +19,7 @@
     {
       "path": "README.md",
       "size": 1358,
-      "sha256": "600ce3223034324b28867fe7d5351d82aa3dd4e82f62ed85c6dc8342d5073f1b"
+      "sha256": "f06877e37fe9c9672a59459281074ccdd965f2f06f3001ccfcdf2724ca398984"
     },
     {
       "path": "about.html",
@@ -33,18 +33,18 @@
     },
     {
       "path": "app.js",
-      "size": 186637,
-      "sha256": "d62e80443809b2c5861e06848571e85e82a88ef0aea8a786e3883f638baaa21d"
+      "size": 187274,
+      "sha256": "8ef045d0454057228d4d20c3aea0308fb6cd183b6a03afccdacd3f7f116b4fb6"
     },
     {
       "path": "article-export-ui.js",
-      "size": 6175,
-      "sha256": "0873d57d716c6e1f5a78fd433e0b115dcd53bfbec3f2034814bfe4c4d101fcd3"
+      "size": 6178,
+      "sha256": "eb96a0b306b6f58514eeddea4e283fc52ee0dda9ae3e179daab4f899449f046f"
     },
     {
       "path": "article-export.js",
-      "size": 11161,
-      "sha256": "994db67888bf63db1841efa1876d085640f86408335937088a510590f804395f"
+      "size": 11308,
+      "sha256": "ca205bc96f1bc6030770d7d94d63d563cd362ab464b777e3f01de4d5e54fd2a9"
     },
     {
       "path": "assets/favicon.svg",
@@ -808,8 +808,8 @@
     },
     {
       "path": "library-workflow.js",
-      "size": 6015,
-      "sha256": "7ad68a55d4f04f14a9a13d663d6645ba1597b86498635f4e9b5defe42358a345"
+      "size": 6355,
+      "sha256": "a6024c7fe95e36adbce6ab62325b5365c4767938d00f9b8f2bf0f5c68daa880f"
     },
     {
       "path": "method-categories.js",
@@ -893,8 +893,8 @@
     },
     {
       "path": "styles.css",
-      "size": 104928,
-      "sha256": "10d1bfd9943730a4caef5a2b288dea4b590b29d00442b6414f72ecf2de7bca1e"
+      "size": 105130,
+      "sha256": "a760730d2c0accae9f6b3c327d6828bb9f97e716060a3b0902e16e1df8020bbb"
     },
     {
       "path": "vendor/pdfjs/LICENSE",
