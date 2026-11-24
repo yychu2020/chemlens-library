@@ -12,6 +12,7 @@ export function captionAnchors(content,viewport,page){
  return anchors;
 }
 export function resolveFigureGeometry(figure,anchors=[]){
+ if(figure.geometryVerified==='manual'&&validBox(figure.bbox))return {page:figure.page,bbox:{...figure.bbox},anchor:null,needsReview:false,version:GEOMETRY_VERSION};
  const matches=anchors.filter(a=>figureKey(a.number)===figureKey(figure.number));let anchor=matches.find(a=>a.page===figure.page);if(!anchor&&matches.length===1&&matches[0].page===figure.page)anchor=matches[0];
  const page=figure.page;let bbox=validBox(figure.bbox)?{...figure.bbox}:null;
  // A box from another page is never reused on the newly identified figure page.

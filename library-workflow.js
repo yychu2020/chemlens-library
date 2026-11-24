@@ -6,7 +6,7 @@ export function isPendingPaper(p){return !p.demo&&!hasPaperAnalysis(p);}
 export function canRetryAnalysis(p){return p?.status==='failed'&&!p.analysis&&['AI_RESULT_INVALID','AI_RESULT_INCOMPLETE','AI_TASK_FAILED','AI_REFUSED','PDF_PREPARATION_FAILED','AI_RATE_LIMITED','AI_AUTH_FAILED','AI_UPSTREAM_ERROR'].includes(p.error?.code)&&(p.analysisAttempts||[]).length<10;}
 const filenameKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu,'');
 export function linkReviewedUploads(state,curated){
- for(const p of state.papers){if(p.manualEdited)continue;if(hasPaperAnalysis(p)&&p.journal&&p.year&&state.figures?.some(f=>f.paperId===p.id)&&state.methods?.some(m=>m.paperId===p.id))continue;
+ for(const p of state.papers){if(p.manualEdited||state.figures?.some(f=>f.paperId===p.id&&f.manualGeometryEdited))continue;if(hasPaperAnalysis(p)&&p.journal&&p.year&&state.figures?.some(f=>f.paperId===p.id)&&state.methods?.some(m=>m.paperId===p.id))continue;
   const match=matchingReviewedPaper(p,curated);
   if(match)p.resolvedPaperId=match.id;
  }
@@ -31,3 +31,5 @@ export function matchingReviewedPaper(p,curated){const known=curated.filter(k=>k
 export function restoreCuratedRecords(state,curated){for(const base of curated.papers){const p=state.papers.find(x=>x.id===base.id);if(!p)continue;for(const key of ['title','englishTitle','authors','journal','year','volume','doi','url','sourcePages','researchFields','summary']){const value=p[key];if(value==null||value===''||Array.isArray(value)&&!value.length||typeof value==='string'&&/^待|待核实|来源信息待/.test(value)){if(base[key]!==undefined)p[key]=structuredClone(base[key]);}}if(!p.insightEdited&&(!p.insight||/^待研读|待梳理/.test(p.insight.highlight||'')))p.insight=structuredClone(base.insight);if(!p.shortTitleEdited&&base.shortTitle)p.shortTitle=base.shortTitle;if(p.example&&p.cloud){p.cloud=false;p.pdfUrl=base.pdfUrl;}for(const key of ['figures','methods'])for(const item of curated[key].filter(x=>x.paperId===base.id))if(!state[key].some(x=>x.id===item.id))state[key].push(structuredClone(item));}return linkReviewedUploads(state,curated.papers);}
 
 export function paginateUsage(rows,page=1){const size=30,total=rows.length,pages=Math.max(1,Math.ceil(total/size)),current=Math.max(1,Math.min(pages,Number.isSafeInteger(page)?page:1)),offset=(current-1)*size;return {items:rows.slice(offset,offset+size),page:current,pages,total,start:total?offset+1:0,end:Math.min(offset+size,total)};}
+
+export function acceptFigureGeometry(old,incoming){if(old.manualGeometryEdited||old.geometryVerified==='manual'){if(incoming.geometryVerified!=='manual')return false;const a=Date.parse(old.manualGeometryUpdatedAt||old.geometryUpdatedAt||'')||0,b=Date.parse(incoming.geometryUpdatedAt||'')||0;return !a||b>=a;}return true;}
