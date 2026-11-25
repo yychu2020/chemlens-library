@@ -40,7 +40,7 @@ export function crossrefEntry(item,issn){
 }
 export function highScoreEntries(existing,incoming,{threshold,profile,at=new Date().toISOString()}={}){
  const map=new Map(existing.map(p=>[normalizeDOI(p.doi),p]).filter(([id])=>id));let added=0;
- for(const p of incoming){const doi=normalizeDOI(p.doi);if(!doi||!Number.isInteger(p.score)||p.score<threshold||p.score>10||p.isRelevant===false)continue;const old=map.get(doi);if(!old)added++;map.set(doi,{...p,...(old?.studyTypeEdited?{studyType:old.studyType,studyTypeEdited:true}:{}),doi,url:'https://doi.org/'+doi,profile,retainedAt:at,retentionThreshold:threshold});}
+ for(const p of incoming){const doi=normalizeDOI(p.doi);if(!doi||!Number.isInteger(p.score)||p.score<threshold||p.score>10||p.isRelevant===false)continue;const old=map.get(doi);if(!old)added++;map.set(doi,{...p,...(old?.studyTypeEdited?{studyType:old.studyType,studyTypeEdited:true}:{}),doi,url:'https://doi.org/'+doi,profile,retainedAt:old?old.retainedAt||'':p.retainedAt||at,collectedAt:old?old.collectedAt||old.retainedAt||'':p.collectedAt||p.retainedAt||at,retentionThreshold:threshold});}
  return {entries:[...map.values()].sort((a,b)=>b.score-a.score||(b.publishedDate||'').localeCompare(a.publishedDate||'')),added};
 }
 export function isDiscoveryCollected(entry,papers=[]){
@@ -59,8 +59,9 @@ export function discoveryStudyType(p){
  if(/\b(?:DFT|density.functional|molecular dynamics|first.principles|ab initio|theoretical|computational|simulation|machine.learning|neural network|deep learning|foundation model)\b/i.test(s)||/密度泛函|分子动力学|第一性原理|机器学习|神经网络|理论|模拟|计算/.test(s))return '纯计算';
  return '实验';
 }
-export const DISCOVERY_SORTS={'date-desc':'发表时间：从新到旧','date-asc':'发表时间：从旧到新','score-desc':'分数：从高到低','score-asc':'分数：从低到高'};
+export const DISCOVERY_SORTS={'collected-desc':'收录时间：从新收录到旧收录','date-desc':'发表时间：从新到旧','date-asc':'发表时间：从旧到新','score-desc':'分数：从高到低','score-asc':'分数：从低到高'};
 export function sortDiscoveryEntries(entries,sort='score-desc'){
+ if(sort==='collected-desc'){const time=p=>{const t=Date.parse(p.collectedAt||p.retainedAt||'');return Number.isFinite(t)?t:null;};return entries.map((p,index)=>({p,index,time:time(p)})).sort((a,b)=>a.time===null||b.time===null?(a.time!==null?-1:b.time!==null?1:a.index-b.index):b.time-a.time||a.index-b.index).map(x=>x.p);}
  const date=p=>/^\d{4}(?:-\d{2}){0,2}$/.test(p.publishedDate||'')?(p.publishedDate+'-01-01').slice(0,10):'';
  const byDate=(a,b,direction)=>{const x=date(a),y=date(b);return !x||!y?x?-1:y?1:0:direction*x.localeCompare(y);};
  return [...entries].sort((a,b)=>(sort.startsWith('date-')?byDate(a,b,sort==='date-asc'?1:-1)||b.score-a.score:(sort==='score-asc'?a.score-b.score:b.score-a.score)||byDate(a,b,-1))||a.doi.localeCompare(b.doi));
@@ -69,7 +70,7 @@ export function discoveryBackup(value){
  if(!value||value.version!==DISCOVERY_VERSION||!Array.isArray(value.entries)||!Array.isArray(value.history)||value.entries.length>10000||value.history.length>3000)throw Error('备份格式无效，最多支持10000条题录和3000条检索记录。');
  const entries=value.entries.map(p=>{
   if(!p||!normalizeDOI(p.doi)||!Number.isInteger(p.score)||p.score<0||p.score>10||typeof p.titleEn!=='string'||!p.titleEn.trim())throw Error('题录中存在无效的DOI、分数或标题。');
-  const str=(k,n=2000)=>String(p[k]||'').slice(0,n);return {doi:normalizeDOI(p.doi),titleEn:str('titleEn',700),titleZh:str('titleZh',700),journal:str('journal',200),issn:str('issn',20),publishedDate:str('publishedDate',10),authors:Array.isArray(p.authors)?p.authors.slice(0,6).map(x=>String(x).slice(0,120)):[],abstract:str('abstract',5000),reason:str('reason',700),studyType:discoveryStudyType(p),studyTypeEdited:p.studyTypeEdited===true,score:p.score,isRelevant:true,evidence:p.evidence==='title-and-abstract'?'title-and-abstract':'title-only',profile:str('profile'),retainedAt:str('retainedAt',40),retentionThreshold:Number.isInteger(p.retentionThreshold)&&p.retentionThreshold>=0&&p.retentionThreshold<=10?p.retentionThreshold:8,url:'https://doi.org/'+normalizeDOI(p.doi)};
+  const str=(k,n=2000)=>String(p[k]||'').slice(0,n);return {doi:normalizeDOI(p.doi),titleEn:str('titleEn',700),titleZh:str('titleZh',700),journal:str('journal',200),issn:str('issn',20),publishedDate:str('publishedDate',10),authors:Array.isArray(p.authors)?p.authors.slice(0,6).map(x=>String(x).slice(0,120)):[],abstract:str('abstract',5000),reason:str('reason',700),studyType:discoveryStudyType(p),studyTypeEdited:p.studyTypeEdited===true,score:p.score,isRelevant:true,evidence:p.evidence==='title-and-abstract'?'title-and-abstract':'title-only',profile:str('profile'),retainedAt:str('retainedAt',40),collectedAt:str('collectedAt',40),retentionThreshold:Number.isInteger(p.retentionThreshold)&&p.retentionThreshold>=0&&p.retentionThreshold<=10?p.retentionThreshold:8,url:'https://doi.org/'+normalizeDOI(p.doi)};
  });
  const history=value.history.map(h=>{if(!h||!discoveryJournal(h.issn)||!['completed','interrupted','failed'].includes(h.status)||typeof h.scope!=='string'||h.scope.length>2300)throw Error('检索历史无效。');if(dateDay(h.from)>dateDay(h.until))throw Error('历史日期无效。');return {id:clean(h.id).slice(0,100),issn:h.issn,from:h.from,until:h.until,scope:h.scope,status:h.status,at:clean(h.at).slice(0,40),screened:Math.max(0,Number(h.screened)||0),kept:Math.max(0,Number(h.kept)||0)};});
  return {version:DISCOVERY_VERSION,entries,history};
