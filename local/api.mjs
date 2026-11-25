@@ -296,10 +296,12 @@ async function handleSearchReports(request, bucket, scope) {
       if (id) return reply({ report: searchReportView(await requireSearchReport(bucket, scope, id)) });
       const cursor = url.searchParams.get("cursor");
       if (cursor?.length > 6e3) throw Error("\u62A5\u544A\u5206\u9875\u6807\u8BC6\u65E0\u6548\u3002");
-      const page2 = await bucket.list({ prefix: `private/${scope}/discovery-reports/index/`, limit: 30, ...cursor ? { cursor } : {} }), reports = (await Promise.all(page2.objects.map(async (o) => {
+      const page2 = await bucket.list({ prefix: `private/${scope}/discovery-reports/index/`, limit: 30, ...cursor ? { cursor } : {} }), reports = [];
+      for (let i = 0; i < page2.objects.length; i += 5) reports.push(...(await Promise.all(page2.objects.slice(i, i + 5).map(async (o) => {
         const v = await bucket.get(o.key);
         return v ? searchReportView(await requireSearchReport(bucket, scope, (await v.json()).id)) : null;
-      }))).filter(Boolean).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+      }))).filter(Boolean));
+      reports.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
       return reply({ reports, nextCursor: page2.truncated ? page2.cursor : null });
     }
     const raw = await request.text();
@@ -1656,6 +1658,16 @@ async function crossrefPage(target, { fetcher = fetch, requireTotal = false, wai
   throw error3;
 }
 
+// ../../chemlens/library-workflow.js
+function hasPaperAnalysis(p) {
+  if (p.resolvedPaperId || p.example || p.status === "completed" || p.analysis || p.cloudAnalysisApplied) return true;
+  const s = p.summary;
+  return typeof s === "string" ? !!s.trim() : !!(s && ((s.researchQuestion || "").trim() || (s.mainFindings || []).length));
+}
+function canRetryAnalysis(p, { allowUnconfirmed = false } = {}) {
+  return p?.status === "failed" && !p.analysis && ["BACKUP_TASK_PAUSED", "AI_RESULT_INVALID", "AI_RESULT_INCOMPLETE", "AI_TASK_FAILED", "AI_REFUSED", "PDF_PREPARATION_FAILED", "AI_RATE_LIMITED", "AI_AUTH_FAILED", "AI_UPSTREAM_ERROR", "AI_PREPARATION_INTERRUPTED", ...allowUnconfirmed && !p.responseId && !p.hasTaskId ? ["AI_START_UNCERTAIN"] : []].includes(p.error?.code) && (p.analysisAttempts || []).length < 10;
+}
+
 // ../../chemlens/server/discovery-library.mjs
 async function readRecords(bucket, prefix4) {
   const rows = [];
@@ -1671,7 +1683,7 @@ async function readRecords(bucket, prefix4) {
 async function discoveryLibrary(bucket, scope, env = {}) {
   const [own, catalog, snapshot] = await Promise.all([readRecords(bucket, `private/${scope}/papers/`), readRecords(bucket, "catalog/v1/records/"), bucket.get(`private/${scope}/workspace-state/snapshot.json`)]);
   const saved = snapshot ? (await snapshot.json()).state?.papers || [] : [];
-  return [...env.LIBRARY_IDENTITIES || [], ...catalog.filter((r) => r.published).map((r) => r.paper), ...own.filter((p) => p.status === "completed" && p.analysis), ...saved.filter((p) => p.summary || p.analysis || p.example)];
+  return [...env.LIBRARY_IDENTITIES || [], ...catalog.filter((r) => r.published).map((r) => r.paper), ...own.filter(hasPaperAnalysis), ...saved.filter(hasPaperAnalysis)];
 }
 async function excludeCollectedEntries(entries, bucket, scope, env = {}) {
   const library = await discoveryLibrary(bucket, scope, env), excluded = [], active2 = [];
@@ -3338,11 +3350,6 @@ async function translateCaptionRecord(record, { env, requestId, save, load: load
 
 // ../../chemlens/server/verified-recoveries.mjs
 var verifiedRecoveries = {};
-
-// ../../chemlens/library-workflow.js
-function canRetryAnalysis(p, { allowUnconfirmed = false } = {}) {
-  return p?.status === "failed" && !p.analysis && ["BACKUP_TASK_PAUSED", "AI_RESULT_INVALID", "AI_RESULT_INCOMPLETE", "AI_TASK_FAILED", "AI_REFUSED", "PDF_PREPARATION_FAILED", "AI_RATE_LIMITED", "AI_AUTH_FAILED", "AI_UPSTREAM_ERROR", "AI_PREPARATION_INTERRUPTED", ...allowUnconfirmed && !p.responseId && !p.hasTaskId ? ["AI_START_UNCERTAIN"] : []].includes(p.error?.code) && (p.analysisAttempts || []).length < 10;
-}
 
 // ../../chemlens/server/analysis-normalize.mjs
 function normalizeAnalysisDraft(value) {
