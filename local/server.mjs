@@ -5,7 +5,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {randomBytes,timingSafeEqual} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import {createBucket} from './storage.mjs';
-import {handleApi,handleCatalog} from './api.mjs';
+import {handleApi,handleCatalog,runInLocalScope} from './api.mjs';
 import {seed} from '../workbench/data.js';
 const root=resolve(fileURLToPath(new URL('../',import.meta.url))),workbench=join(root,'workbench');
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.pdf':'application/pdf','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.mjs':'text/javascript; charset=utf-8','.wasm':'application/wasm','.bcmap':'application/octet-stream','.ttf':'font/ttf'};
@@ -54,11 +54,11 @@ export async function startLocalServer({port=4188,dataDir=process.env.CHEMLENS_L
    if(url.pathname==='/local/setup'||homepage&&url.searchParams.get('setup')==='1')return finish(new Response(await readFile(join(root,'local/setup.html')),{headers:{'Content-Type':mime['.html'],'Cache-Control':'no-store'}}));
    if(url.pathname.startsWith('/api/')){
     const headers=new Headers();for(const [k,v]of Object.entries(req.headers))if(v!==undefined&&!/^(?:oai-|x-chemlens-local-)/i.test(k))headers.set(k,Array.isArray(v)?v.join(','):v);
-    headers.set('oai-authenticated-user-id','local-private-owner');headers.set('oai-authenticated-user-email','owner@localhost.invalid');headers.set('x-chemlens-local-scope',config.scope);
+    headers.set('oai-authenticated-user-id','local-private-owner');headers.set('oai-authenticated-user-email','owner@localhost.invalid');
     const request=new Request(url,{method:req.method,headers,...(body.length?{body}: {})});
     const env={BUCKET:bucket,CHEMLENS_OWNER_EMAIL:'owner@localhost.invalid',CHEMLENS_PRIVATE_LIBRARY:'1',WECHAT_SETTINGS_KEY:config.encryptionKey,LIBRARY_IDENTITIES:seed.papers,PUBLIC_FIGURES:Object.fromEntries(seed.figures.map(f=>[f.id,f.paperId])),OWNER_LIBRARY_DATA:{papers:[],notes:[],events:[]},AI_PROVIDER:config.ai?.provider||'zhipu',ZHIPU_MODEL:config.ai?.model||'glm-4.6v',OPENAI_MODEL:config.ai?.model||'',...(config.ai?.key?{[config.ai.provider==='openai'?'OPENAI_API_KEY':'ZHIPU_API_KEY']:config.ai.key}:{})};
     const ctx={waitUntil(p){pending.add(p);p.catch(()=>console.error('后台任务未完成，请在任务记录中查看原因。')).finally(()=>pending.delete(p));}};
-    const response=await handleCatalog(request,env)||await handleApi(request,env,ctx);return finish(response||new Response('Not found',{status:404}));
+    const response=await runInLocalScope(config.scope,async()=>await handleCatalog(request,env)||await handleApi(request,env,ctx));return finish(response||new Response('Not found',{status:404}));
    }
    let path=decodeURIComponent(url.pathname);if(path==='/')path='/index.html';
    if(path.split('/').some(p=>p.startsWith('.')||['local','node_modules','server','scripts','tests'].includes(p)))return json({error:{message:'文件不存在。'}},404);

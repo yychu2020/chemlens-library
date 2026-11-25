@@ -1,6 +1,6 @@
 {
   "date": "2026-11-25",
-  "sourceCommit": "2b36c46d9803d61d63e9e285110cc8ddc6018d1a",
+  "sourceCommit": "7c762759e57ecc5b7cd6a8f4cf6f78d9da139648",
   "edition": "public-reader-and-local-private-workbench",
   "papers": 21,
   "figures": 119,
@@ -8,5 +8,7 @@
   "authorMatch": "exact-name",
   "authorMinimumPapers": 3,
   "uploadSort": true,
-  "localService": "Node.js >=22; 127.0.0.1:4188"
+  "localService": "Node.js >=22; 127.0.0.1:4188",
+  "duplicateBackupRejection": true,
+  "localRemovalQueue": true
 }

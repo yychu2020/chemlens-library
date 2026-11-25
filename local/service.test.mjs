@@ -50,3 +50,16 @@ test('portable service protects identity, persists settings, restores scoped dat
   console.log('Verified loopback/Host/Origin/session guards, scope isolation, encrypted account persistence, backup restoration, styled draft payload and duplicate protection.');
  }finally{await app.close();globalThis.fetch=nativeFetch;assert.ok(dataDir.startsWith(join(tmpdir(),'chemlens-portable-test-')));await rm(dataDir,{recursive:true,force:true});}
 });
+test('two local services keep request scopes separate and ignore forged caller identity headers',async()=>{
+ const directory=await mkdtemp(join(tmpdir(),'chemlens-local-isolation-'));
+ const a=await startLocalServer({port:0,dataDir:join(directory,'a')}),b=await startLocalServer({port:0,dataDir:join(directory,'b')});
+ try{
+  const ah=await nativeFetch(a.origin+'/'),bh=await nativeFetch(b.origin+'/'),ac=ah.headers.get('set-cookie').split(';')[0],bc=bh.headers.get('set-cookie').split(';')[0];
+  const get=(app,cookie,path='/api/status')=>nativeFetch(app.origin+path,{headers:{Cookie:cookie,'x-chemlens-local-scope':'f'.repeat(40),'oai-authenticated-user-id':'forged'}}).then(r=>r.json());
+  const ai=await get(a,ac),bi=await get(b,bc);assert.notEqual(ai.userStorageKey,bi.userStorageKey);assert.notEqual(ai.userStorageKey,'f'.repeat(40));
+  const rows=await Promise.all(Array.from({length:12},(_,i)=>i%2?get(a,ac):get(b,bc)));for(let i=0;i<rows.length;i++)assert.equal(rows[i].userStorageKey,i%2?ai.userStorageKey:bi.userStorageKey);
+  const value={id:'isolation-qa',state:{papers:[],figures:[],methods:[],notes:[{id:'one',text:'Local test only'}]}},raw=JSON.stringify(value),sha=Buffer.from(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw))).toString('hex');
+  const written=await nativeFetch(a.origin+'/api/workspace-backup/file?key=workspace-state/snapshot.json',{method:'PUT',headers:{Cookie:ac,Origin:a.origin,'X-Backup-Scope':ai.userStorageKey,'X-Backup-SHA256':sha},body:raw});assert.equal(written.status,200);
+  assert.equal((await get(a,ac,'/api/workspace-snapshot')).snapshot.id,value.id);assert.equal((await get(b,bc,'/api/workspace-snapshot')).snapshot,null);
+ }finally{await a.close();await b.close();assert.ok(directory.startsWith(join(tmpdir(),'chemlens-local-isolation-')));await rm(directory,{recursive:true,force:true});}
+});
