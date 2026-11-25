@@ -1,0 +1,11 @@
+export const GALLERY_PAGE_SIZE=100;
+export function figureStars(value){return Number.isFinite(value)&&value>=0&&value<=5?value:0;}
+export function paginateFigures(figures,page=1){const total=figures.length,pages=Math.max(1,Math.ceil(total/GALLERY_PAGE_SIZE)),current=Math.max(1,Math.min(pages,Number.isSafeInteger(page)?page:1)),offset=(current-1)*GALLERY_PAGE_SIZE;return {items:figures.slice(offset,offset+GALLERY_PAGE_SIZE),page:current,pages,total,start:total?offset+1:0,end:Math.min(offset+GALLERY_PAGE_SIZE,total)};}
+export function sortFiguresByStars(figures,getRating=f=>f.rating){return [...figures].sort((a,b)=>figureStars(getRating(b))-figureStars(getRating(a)));}
+
+export function formatFigureStars(value){const stars=figureStars(value);return String(stars===5?5:Math.min(4.99,Math.round(stars*100)/100));}
+
+export function figureRatingTone(value){const n=figureStars(value),index=n===0?0:Math.max(1,Math.min(5,Math.round(n))),colors=['#95A4B8','#D55069','#D58138','#AF932D','#269D87','#16855B'];return {color:colors[index],highlight:n>=3,tier:index};}
+export function figureNavigation(ids,current){const unique=[...new Set(ids)],index=unique.indexOf(current);return {index,total:unique.length,previous:index>0?unique[index-1]:null,next:index>=0&&index+1<unique.length?unique[index+1]:null};}
+export function figureDescription(figure,{caption=''}={}){const placeholder=/^(?:添加中文解释|留下你的阅读发现|待记录|待填写|待补充)/;for(const value of [figure.description,figure.finding,figure.question,figure.reading,caption]){const text=String(value||'').trim();if(text&&!placeholder.test(text))return text.length>220?text.slice(0,219)+'…':text;}return '';}
+export function sortFiguresByPaperUpload(figures,papers){const groups=new Map();papers.forEach((p,index)=>{const id=p.resolvedPaperId||p.id,time=Date.parse(p.uploadedAt||p.createdAt||'')||0,old=groups.get(id);if(!old||time>old.time||time===old.time&&index<old.index)groups.set(id,{time,index});});return figures.map((f,index)=>({f,index})).sort((a,b)=>{const x=groups.get(a.f.paperId)||{time:0,index:1e9},y=groups.get(b.f.paperId)||{time:0,index:1e9};if(a.f.paperId!==b.f.paperId)return y.time-x.time||x.index-y.index;const number=f=>Number(String(f.number||'').match(/\d+/)?.[0]||1e6);return number(a.f)-number(b.f)||(a.f.page||0)-(b.f.page||0)||a.index-b.index;}).map(x=>x.f);}

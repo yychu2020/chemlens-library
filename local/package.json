@@ -1,0 +1,13 @@
+{
+  "name": "chemlens-local-service",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "unpdf": "1.9.1",
+    "js-tiktoken": "1.0.21"
+  }
+}

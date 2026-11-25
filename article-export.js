@@ -1,3 +1,4 @@
+import {wechatArticleHTML} from './wechat-layout.js';
 import {scientificHTML,scientificMarkdown,scientificPlainText} from './scientific-text.js';
 import {figureCaptionZh} from './caption-translations.js';
 import {paperDisplayName} from './paper-names.js';
@@ -9,7 +10,7 @@ const md=s=>scientificMarkdown(text(s));
 export function articleImageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff)return 'image/jpeg';if([137,80,78,71,13,10,26,10].every((n,i)=>bytes[i]===n))return 'image/png';if(String.fromCharCode(...bytes.subarray(0,4))==='RIFF'&&String.fromCharCode(...bytes.subarray(8,12))==='WEBP')return 'image/webp';return '';}
 export function articleFilename(p){return paperDisplayName(p).replace(/[<>:"/\\|?*\u0000-\u001f]/g,'-').replace(/[. ]+$/,'').slice(0,130)||'文献解读';}
 export function articleSource(p){return [p.journal,p.year,p.volume?(p.articleNumber?`${p.volume}, ${p.articleNumber}`:p.sourcePages?`${p.volume}, ${p.sourcePages}`:p.volume):p.articleNumber,p.doi?'DOI: '+p.doi:''].filter(Boolean).join(' · ');}
-export function safeArticleURL(value){const s=text(value);if(/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=\s]+$/i.test(s))return s;if(/^images\/[A-Za-z0-9._-]+$/.test(s))return s;try{const u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
+export function safeArticleURL(value){const s=text(value);if(/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=\s]+$/i.test(s))return s;if(/^images\/[A-Za-z0-9._-]+$/.test(s))return s;try{const u=new URL(s);return ['http:','https:','blob:'].includes(u.protocol)?u.href:'';}catch{return '';}}
 // Remove only a repeated caption heading; retain all panel descriptions,
 // conditions and values from the original translated caption.
 const captionTitleKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/剖面/g,'曲线').replace(/以及|与|和|及|的|建模|计算|分析/g,'').replace(/[^\p{L}\p{N}]/gu,'');
@@ -42,18 +43,7 @@ export function articleBlocks(p,figures=[],methods=[],{images=new Map(),readingU
 }
 export function articleMarkdown(blocks){return blocks.map(b=>b.type==='heading'?'#'.repeat(b.level)+' '+md(b.text).replace(/\r?\n/g,' '):b.type==='label'?`**${md(b.label)}：**\n\n${md(b.text)}`:b.type==='list'?b.items.map(x=>'- '+md(x).replace(/\r?\n/g,'\n  ')).join('\n'):b.type==='image'?`![${md(b.text)}](${b.url})`:b.type==='link'?`[${md(b.text)}](${b.url.replace(/[()]/g,c=>c==='('?'%28':'%29')})`:b.type==='divider'?'---':md(b.text)).join('\n\n')+'\n';}
 export function articlePlainText(blocks){return scientificPlainText(blocks.map(b=>b.type==='label'?b.label+'：\n'+b.text:b.type==='list'?b.items.map(x=>'• '+x).join('\n'):b.type==='link'?b.text+'：'+b.url:b.type==='image'?'【'+b.text+'】':b.type==='divider'?'——':b.text).join('\n\n'));}
-export function articleHTML(blocks,{document=false,title='文献解读'}={}){
- const para='margin:0 0 18px;font-size:16px;line-height:1.9;color:#273445;text-align:justify;overflow-wrap:anywhere;',body=blocks.map(b=>{
-  if(b.type==='heading'){const size=b.level===1?24:b.level===2?20:17;return `<h${b.level} style="margin:${b.level===1?'8px 0 24px':'30px 0 16px'};font-size:${size}px;line-height:1.6;font-weight:700;color:#174b7e;">${scientificHTML(b.text)}</h${b.level}>`;}
-  if(b.type==='label')return `<p style="${para}"><strong>${html(b.label)}：</strong><br>${scientificHTML(b.text).replace(/\r?\n/g,'<br>')}</p>`;
-  if(b.type==='list')return `<ul style="padding-left:24px;margin:0 0 20px;">${b.items.map(x=>`<li style="${para}">${scientificHTML(x).replace(/\r?\n/g,'<br>')}</li>`).join('')}</ul>`;
-  if(b.type==='image')return `<p style="margin:20px 0;text-align:center;"><img src="${html(b.url)}" alt="${html(b.text)}" style="display:block;width:100%;max-width:100%;height:auto;margin:0 auto;"></p>`;
-  if(b.type==='link')return `<p style="${para}"><a href="${html(b.url)}" style="color:#1965b4;text-decoration:underline;">${html(b.text)}</a></p>`;
-  if(b.type==='divider')return '<hr style="border:0;border-top:1px solid #dbe4ef;margin:32px 0;">';
-  return `<p style="${para}">${scientificHTML(b.text).replace(/\r?\n/g,'<br>')}</p>`;
- }).join('\n');const article=`<article style="max-width:720px;margin:0 auto;padding:24px 20px;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;">${body}</article>`;
- return document?`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${html(title)}</title></head><body style="margin:0;background:#fff">${article}</body></html>`:article;
-}
+export const articleHTML=wechatArticleHTML;
 // Uncompressed ZIP keeps the already-compressed original image bytes intact.
 const crcTable=Uint32Array.from({length:256},(_,n)=>{for(let i=0;i<8;i++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
 const crc32=data=>{let crc=0xffffffff;for(const b of data)crc=crcTable[(crc^b)&255]^(crc>>>8);return(crc^0xffffffff)>>>0;};

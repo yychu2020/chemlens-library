@@ -1,0 +1,8 @@
+{
+  "name": "chemlens-independent-workbench",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node local/server.mjs"
+  }
+}

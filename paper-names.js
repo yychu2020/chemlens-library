@@ -23,4 +23,6 @@ export function cleanPaperShortTitle(value,p={}){let title=text(value).replace(/
  if(title.length>32){const main=title.split(/[：:；;。]/)[0];title=main||title;title=title.replace(/^(?:一种用于|一种|基于|通过)/,'');if(title.length>32)title=[...title].slice(0,32).join('');}
  return title||'中文短名待补充';}
 export function paperShortName(p={}){for(const value of [p.shortTitle,p.short,p.chineseTitle,p.title,p.filename]){if(!value)continue;const result=cleanPaperShortTitle(value,p);if(result!=='中文短名待补充')return result;}return '中文短名待补充';}
-export function paperDisplayName(p={}){const rawYear=text(String(p.year||'')),inferred=text(p.title||p.filename).match(/^((?:19|20)\d{2})/);const year=/^(?:19|20)\d{2}$/.test(rawYear)?rawYear:inferred?.[1]||'年份待核实';return `${year} ${paperJournalName(p)} ${paperShortName(p)}`;}
+export function paperDisplayName(p={}){if(p.displayTitleEdited&&text(p.displayTitle))return text(p.displayTitle);const rawYear=text(String(p.year||'')),inferred=text(p.title||p.filename).match(/^((?:19|20)\d{2})/);const year=/^(?:19|20)\d{2}$/.test(rawYear)?rawYear:inferred?.[1]||'年份待核实';return `${year} ${paperJournalName(p)} ${paperShortName(p)}`;}
+
+export function paperPDFDownloadName(p){const title=paperDisplayName(p).replace(/[<>:"/\\|?*\u0000-\u001f]/g,'_').replace(/[ .]+$/,'').slice(0,180);return (title||'文献')+'.pdf';}

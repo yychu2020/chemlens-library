@@ -13,3 +13,5 @@ const figureKey=value=>String(value||'').replace(/^(?:Fig(?:ure)?\.?|图)\s*/i,'
 const doiKey=p=>String(p?.doi||p?.analysis?.metadata?.doi||'').trim().replace(/^https?:\/\/(?:dx\.)?doi\.org\//i,'').toLowerCase();
 export function figureCaptionZh(f,p={}){const existing=String(f?.captionZh||'').trim();if(isChineseCaption(existing))return existing;if(f?.captionEdited)return '';return captions[doiKey(p)]?.[figureKey(f?.number)]||'';}
 export function applyCaptionTranslations(analysis){if(!analysis?.metadata||!Array.isArray(analysis.figures))return false;let changed=false;for(const f of analysis.figures){const translated=figureCaptionZh(f,analysis.metadata);if(translated&&translated!==f.captionZh){f.captionZh=translated;changed=true;}}return changed;}
+
+export function figureCaptionOriginal(f,p={}){const remote=p.analysis?.figures?.find(x=>figureKey(x.number)===figureKey(f?.number));for(const value of [f?.captionOriginal,f?.caption,remote?.captionOriginal,remote?.caption,f?.captionZh]){const s=String(value||'').trim();if(s&&!isChineseCaption(s)&&/[A-Za-z]{3}/.test(s))return s;}return '';}

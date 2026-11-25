@@ -62,7 +62,7 @@ function legacyTags(figure){
 const parents={'自由能图':['能量图','反应路径'],'能垒图':['能量图','反应路径'],'球棍结构':['结构模型'],'学习曲线':['折线图'],'拟合对比':['散点图']};
 export function getFigureTags(figure={}){
   const own=Array.isArray(figure.tags)?normalizeTags(figure.tags):legacyTags(figure);
-  return normalizeTags([...own,...own.flatMap(tag=>parents[tag]||[])]);
+  return figure.tagsEdited?own:normalizeTags([...own,...own.flatMap(tag=>parents[tag]||[])]);
 }
 export function tagMatchesQuery(tag,query=''){
   if(!query.trim())return true;
@@ -84,3 +84,8 @@ export function filterByTags(figures=[],selected=[],mode='any'){
   const selectedTags=normalizeTags(selected);
   return uniqueFigures(figures).filter(figure=>!selectedTags.length||(mode==='all'?matchScore(figure,selectedTags)===selectedTags.length:matchScore(figure,selectedTags)>0));
 }
+
+const pinyinCollator=new Intl.Collator('zh-CN-u-co-pinyin',{sensitivity:'base'});
+const initials=[['A','阿'],['B','八'],['C','擦'],['D','搭'],['E','蛾'],['F','发'],['G','噶'],['H','哈'],['J','击'],['K','喀'],['L','垃'],['M','妈'],['N','拿'],['O','哦'],['P','趴'],['Q','期'],['R','然'],['S','撒'],['T','塌'],['W','挖'],['X','昔'],['Y','压'],['Z','匝']];
+export function tagInitial(tag){const first=String(tag||'').normalize('NFKC').trim()[0]||'';if(/[a-z]/i.test(first))return first.toUpperCase();if(!/\p{Script=Han}/u.test(first))return '#';let initial='A';for(const [letter,boundary]of initials){if(pinyinCollator.compare(first,boundary)<0)break;initial=letter;}return initial;}
+export function sortTagChoices(choices,order='count',initial=''){return choices.filter(x=>!initial||tagInitial(x.tag)===initial).sort((a,b)=>order==='pinyin'?tagInitial(a.tag).localeCompare(tagInitial(b.tag))||pinyinCollator.compare(a.tag,b.tag):b.count-a.count||pinyinCollator.compare(a.tag,b.tag));}
