@@ -16,8 +16,12 @@ export function publicationDateFromText(text){
 export function publicationDateLabel(p){if(!p?.publicationDate)return '发表日期待补充';return ({published:'发表',accepted:'接收',received:'收稿'}[p.dateKind]||'发表')+'：'+p.publicationDate;}
 const abbreviations={'Nature Communications':'Nat. Commun.','Nature Chemistry':'Nat. Chem.','Nature Catalysis':'Nat. Catal.','Nature Energy':'Nat. Energy','Nature Materials':'Nat. Mater.','Nature Nanotechnology':'Nat. Nanotechnol.','Nature Synthesis':'Nat. Synth.','Nature Water':'Nat. Water','Nature Protocols':'Nat. Protoc.','Nature Machine Intelligence':'Nat. Mach. Intell.','Nature Computational Science':'Nat. Comput. Sci.','npj Computational Materials':'npj Comput. Mater.','Science Advances':'Sci. Adv.','Journal of the American Chemical Society':'JACS','J. Am. Chem. Soc.':'JACS','Angewandte Chemie':'Angew. Chem.','Angewandte Chemie International Edition':'Angew. Chem. Int. Ed.','ACS Catalysis':'ACS Catal.','Chemical Science':'Chem. Sci.','Journal of Chemical Theory and Computation':'JCTC','Energy & Environmental Science':'EES'};
 export function journalAbbreviation(journal){return abbreviations[journal]||String(journal||'').trim();}
-export const PAPER_DATE_SORTS={default:'默认顺序','date-desc':'发表／接收日期：从新到旧','date-asc':'发表／接收日期：从旧到新'};
+export const PAPER_DATE_SORTS={default:'默认顺序','upload-desc':'上传顺序：最新上传在前','upload-asc':'上传顺序：最早上传在前','date-desc':'发表／接收日期：从新到旧','date-asc':'发表／接收日期：从旧到新'};
 export function sortLibraryPapers(papers,order='default'){
+ if(['upload-desc','upload-asc'].includes(order)){
+  const uploaded=p=>{const value=p.uploadedAt||p.createdAt;if(typeof value!=='string'||!value.trim())return null;const time=Date.parse(value);return Number.isFinite(time)?time:null;};
+  return papers.map((p,index)=>({p,index,time:uploaded(p)})).sort((a,b)=>a.time===null||b.time===null?(a.time!==null?-1:b.time!==null?1:a.index-b.index):(order==='upload-asc'?a.time-b.time:b.time-a.time)||a.index-b.index).map(x=>x.p);
+ }
  if(!['date-desc','date-asc'].includes(order))return [...papers];
  const valid=p=>/^\d{4}-\d{2}-\d{2}$/.test(p.publicationDate||'')&&calendarDate(p.publicationDate)===p.publicationDate?p.publicationDate:'';
  return papers.map((p,index)=>({p,index,date:valid(p)})).sort((a,b)=>!a.date||!b.date?(a.date?-1:b.date?1:a.index-b.index):(order==='date-asc'?a.date.localeCompare(b.date):b.date.localeCompare(a.date))||a.index-b.index).map(x=>x.p);

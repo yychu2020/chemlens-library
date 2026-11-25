@@ -1,9 +1,12 @@
 {
   "date": "2026-11-25",
-  "sourceCommit": "b331d2ab59cd7f070538e3637d27aba09576516e",
+  "sourceCommit": "2b36c46d9803d61d63e9e285110cc8ddc6018d1a",
   "edition": "public-reader-and-local-private-workbench",
   "papers": 21,
   "figures": 119,
   "privateCloudDataIncluded": false,
+  "authorMatch": "exact-name",
+  "authorMinimumPapers": 3,
+  "uploadSort": true,
   "localService": "Node.js >=22; 127.0.0.1:4188"
 }
